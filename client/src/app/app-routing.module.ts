@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from 'src/app/home/home.component';
+import { LayoutComponent } from 'src/app/layout/layout.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent
+  }
+];
 
 const topRoutes: Routes = [
   {
@@ -11,6 +18,7 @@ const topRoutes: Routes = [
   },
   {
     path: '',
+    component: LayoutComponent,
     children: routes
   }
 ];
