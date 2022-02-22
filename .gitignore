@@ -1,15 +1,27 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Client
+/client/dist
+/client/tmp
+/client/out-tsc
+/client/bazel-out
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+/client/node_modules
+/client/npm-debug.log
+/client/yarn-error.log
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+/client/.angular/cache
+/client/.sass-cache/
+/client/connect.lock
+/client/coverage
+/client/libpeerconnection.log
+/client/testem.log
+/client/typings
+
+# Server
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
 # IDEs and editors
 .idea/
@@ -27,15 +39,6 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
 
 # System files
 .DS_Store
