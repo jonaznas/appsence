@@ -5,21 +5,10 @@
       <div class="card bg-neutral shadow-xl">
         <div class="card-body">
           <div class="justify-end card-actions">
-            <!-- TODO implement form group -->
-            <form (ngSubmit)="signIn()">
-              <input type="text" formControlName="email" placeholder="E-Mail" class="input w-full">
+            <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+              <input type="text" formControlName="email" placeholder="E-Mail" value="" class="input w-full">
               <button type="submit" class="btn btn-primary">Einloggen</button>
             </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="card bg-neutral shadow-xl mt-5">
-        <div class="card-body">
-          <div class="justify-end card-actions">
-            <input type="email" placeholder="E-Mail" class="input w-full">
-            <input type="password" placeholder="Passwort" class="input w-full">
-            <button class="btn btn-primary">Registrieren</button>
           </div>
         </div>
       </div>

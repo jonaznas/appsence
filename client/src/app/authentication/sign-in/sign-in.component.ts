@@ -30,13 +30,11 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-    console.log(this.signInForm.value);
-    /**this.loading = true;
-     this.supabaseService.signIn()
-     .then(() => {
-
-      }).catch(() => {
-      this.loading = false;
-    });*/
+    this.loading = true;
+    this.supabaseService.signIn(this.signInForm.value.email)
+      .then(() => {
+        this.loading = false;
+        console.log('signed in');
+      });
   }
 }

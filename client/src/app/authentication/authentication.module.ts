@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { RedirectLoggedInToPipe } from './redirect-logged-in-to.pipe';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignOutComponent } from './sign-out/sign-out.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
-    RedirectLoggedInToPipe
+    SignOutComponent
   ],
   imports: [
     CommonModule,
-    FormsModule,
     ReactiveFormsModule
   ]
 })

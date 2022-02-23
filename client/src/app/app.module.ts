@@ -7,6 +7,8 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { HomeModule } from 'src/app/home/home.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { IconsModule } from 'src/app/layout/icons/icons.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { IconsModule } from 'src/app/layout/icons/icons.module';
     RouterModule,
     LayoutModule,
     HomeModule,
-    IconsModule
+    IconsModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

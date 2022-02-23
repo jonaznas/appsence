@@ -18,6 +18,7 @@ export class AuthenticationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const session = this.supabaseService.getSession();
+    console.log(session);
 
     if (session) {
       return true;
