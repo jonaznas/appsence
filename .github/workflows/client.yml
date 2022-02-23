@@ -8,9 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Vercel Deployment
-        uses: xmflsct/action-vercel-deployment@v0.5.3
+      - name: Vercel Action
+        uses: amondnet/vercel-action@v20.0.0
         with:
-          vercelToken: VERCEL_TOKEN
-          vercelOrgId: VERCEL_ORG_ID
-          vercelProjectId: VERCEL_PROJECT_ID
+          vercel-token: VERCEL_TOKEN
+          vercel-project-id: VERCEL_PROJECT_ID
+          vercel-org-id: VERCEL_ORG_ID
