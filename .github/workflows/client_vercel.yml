@@ -1,4 +1,4 @@
-name: Deploy Client
+name: deploy client to vercel
 on:
   workflow_dispatch:
 
