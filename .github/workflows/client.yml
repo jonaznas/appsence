@@ -1,0 +1,16 @@
+name: Deploy Client
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Vercel Deployment
+        uses: xmflsct/action-vercel-deployment@v0.5.3
+        with:
+          vercelToken: VERCEL_TOKEN
+          vercelOrgId: VERCEL_ORG_ID
+          vercelProjectId: VERCEL_PROJECT_ID
