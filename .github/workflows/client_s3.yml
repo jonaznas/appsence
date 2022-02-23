@@ -33,4 +33,4 @@ jobs:
     - name: Deploy
       working-directory: ./client
       if: success()
-      run: aws s3 sync ./dist/missing-times s3://missing-times
+      run: aws s3 sync ./dist/missing-times s3://${{ secrets.AWS_S3_NAME }}
