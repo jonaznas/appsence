@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: superfly/flyctl-actions@master
         env:
+          working-directory: ./server
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
         with:
-          working-directory: ./server
           args: "deploy"
