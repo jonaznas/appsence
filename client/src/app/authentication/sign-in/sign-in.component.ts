@@ -18,6 +18,7 @@ export class SignInComponent implements OnInit {
   });
 
   @ViewChild('tooManyRequestsModal') tooManyRequestsModal: ElementRef;
+  @ViewChild('emailSentModal') emailSentModal: ElementRef;
 
   constructor(
     private router: Router,
@@ -37,8 +38,10 @@ export class SignInComponent implements OnInit {
       .then(response => {
         this.loading = false;
 
-        if (response?.error?.status === 429) {
+        if (response.error) {
           this.tooManyRequestsModal.nativeElement.checked = true;
+        } else {
+          this.emailSentModal.nativeElement.checked = true;
         }
       });
   }

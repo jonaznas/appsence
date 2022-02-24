@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupabaseService } from 'src/app/authentication/supabase.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  email?: string;
+
+  constructor(
+    private supabaseService: SupabaseService
+  ) { }
 
   ngOnInit(): void {
+    this.email = this.supabaseService.getUser()?.email;
   }
 
 }
