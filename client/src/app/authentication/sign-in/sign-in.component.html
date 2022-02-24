@@ -1,13 +1,35 @@
+<input #tooManyRequestsModal type="checkbox" id="too-many-requests-modal" class="modal-toggle">
+<div class="modal items-center p-5">
+  <div class="modal-box rounded-xl border-2 border-red-700">
+    <h3 class="font-bold text-lg">Hey warte mal..</h3>
+    <p class="py-4">Du musst 60 Sekunden warten bis du einen weiteren Anmeldelink anfordern kannst.</p>
+    <div class="modal-action">
+      <label for="too-many-requests-modal" class="btn">Okay</label>
+    </div>
+  </div>
+</div>
+
 <div class="max-w-md mx-auto h-screen drawer w-full">
   <div class="flex flex-col drawer-content">
     <div class="p-4">
 
-      <div class="card bg-neutral shadow-xl">
-        <div class="card-body">
-          <div class="justify-end card-actions">
-            <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-              <input type="text" formControlName="email" placeholder="E-Mail" value="" class="input w-full">
-              <button type="submit" class="btn btn-primary">Einloggen</button>
+      <div class="card bg-accent shadow-xl">
+        <div class="card-body select-none">
+          <div class="flex flex-col w-full border-opacity-50">
+            <div (click)="signInGoogle()" class="w-100 h-10 flex cursor-pointer justify-center items-center bg-secondary rounded-md">
+              <i-tabler name="brand-google"></i-tabler>
+              <span class="ml-3">Mit Google anmelden</span>
+            </div>
+            <div class="divider">Oder</div>
+            <form [formGroup]="signInForm" (ngSubmit)="signInEmail()">
+              <input type="email" formControlName="email" placeholder="E-Mail" value="" class="input w-full">
+              <button
+                [ngClass]="{'loading': loading}"
+                [disabled]="loading"
+                type="submit"
+                class="btn btn-sm btn-primary mt-5 float-right">
+                Anmeldelink senden
+              </button>
             </form>
           </div>
         </div>

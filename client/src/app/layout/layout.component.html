@@ -7,11 +7,17 @@
           <i-tabler name="align-justified"></i-tabler>
         </label>
       </div>
-      <div class="flex-1 px-2 mx-2">Missing Times</div>
+      <div class="flex-1 px-2 mx-2 normal-case text-xl text-middle">Missing Times</div>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost rounded-btn">x</label>
-        <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-neutral rounded-box w-52 mt-16">
-          <li><a routerLink="sign-out">Abmelden</a></li>
+        <label tabindex="0" class="btn btn-ghost rounded-btn">
+          <i-tabler name="chevron-down"></i-tabler>
+        </label>
+        <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-accent rounded-box w-52 mt-16">
+          <li>
+            <a routerLink="sign-out">
+              <i-tabler name="logout"></i-tabler> Abmelden
+            </a>
+          </li>
         </ul>
       </div>
     </div>

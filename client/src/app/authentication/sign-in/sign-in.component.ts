@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SupabaseService, UserProfile } from 'src/app/authentication/supabase.service';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
@@ -17,6 +17,8 @@ export class SignInComponent implements OnInit {
     email: ['']
   });
 
+  @ViewChild('tooManyRequestsModal') tooManyRequestsModal: ElementRef;
+
   constructor(
     private router: Router,
     private supabaseService: SupabaseService,
@@ -29,12 +31,23 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signIn(): void {
+  signInEmail(): void {
     this.loading = true;
-    this.supabaseService.signIn(this.signInForm.value.email)
+    this.supabaseService.signInEmail(this.signInForm.value.email)
+      .then(response => {
+        this.loading = false;
+
+        if (response?.error?.status === 429) {
+          this.tooManyRequestsModal.nativeElement.checked = true;
+        }
+      });
+  }
+
+  signInGoogle(): void {
+    this.loading = true;
+    this.supabaseService.signInGoogle()
       .then(() => {
         this.loading = false;
-        console.log('signed in');
       });
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignOutComponent } from './sign-out/sign-out.component';
+import { IconsModule } from 'src/app/layout/icons/icons.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { SignOutComponent } from './sign-out/sign-out.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IconsModule
   ]
 })
 export class AuthenticationModule { }

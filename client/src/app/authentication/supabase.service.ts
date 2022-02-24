@@ -40,8 +40,12 @@ export class SupabaseService {
     return this.supabaseClient.auth.onAuthStateChange(callback);
   }
 
-  public signIn(email: string): Promise<any> {
+  public signInEmail(email: string): Promise<any> {
     return this.supabaseClient.auth.signIn({ email });
+  }
+
+  public signInGoogle(): Promise<any> {
+    return this.supabaseClient.auth.signIn({ provider: 'google' });
   }
 
   public signOut(): Promise<any> {
