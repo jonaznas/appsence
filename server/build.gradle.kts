@@ -3,6 +3,7 @@ val kotlin_version: String by project
 val logback_version: String by project
 val gotrue_version: String by project
 val koin_version: String by project
+val exposed_version: String by project
 
 plugins {
     application
@@ -34,6 +35,9 @@ dependencies {
     implementation("io.ktor", "ktor-server-auth-jvm", ktor_version)
     implementation("io.ktor", "ktor-server-auth-jwt-jvm", ktor_version)
     implementation("io.insert-koin", "koin-core", koin_version)
+    implementation("org.jetbrains.exposed", "exposed-core", exposed_version)
+    implementation("org.jetbrains.exposed", "exposed-dao", exposed_version)
+    implementation("org.jetbrains.exposed", "exposed-jdbc", exposed_version)
     implementation("ch.qos.logback", "logback-classic", logback_version)
     testImplementation("io.ktor", "ktor-server-tests-jvm", ktor_version)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlin_version)
