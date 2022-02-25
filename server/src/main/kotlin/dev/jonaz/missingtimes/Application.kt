@@ -19,7 +19,12 @@ class Application(koinApplication: KoinApplication) {
   }
 
   private fun start() = runBlocking {
-    io.ktor.server.engine.embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+    io.ktor.server.engine.embeddedServer(
+      Netty,
+      port = System.getenv("PORT").toIntOrNull() ?: 80,
+      host = "0.0.0.0"
+    )
+    {
       install(Authentication, ::configureAuthentication)
       install(CORS, ::configureCors)
 
