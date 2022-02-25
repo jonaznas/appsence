@@ -6,3 +6,7 @@ subprojects {
     }
   }
 }
+
+tasks.create("stage") {
+  dependsOn("server:installDist")
+}

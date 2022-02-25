@@ -10,6 +10,9 @@ plugins {
 
 group = "dev.jonaz.missingtimes"
 version = "0.0.1"
+
+setBuildDir("../build")
+
 application {
     mainClass.set("dev.jonaz.missingtimes.ApplicationKt")
 }
