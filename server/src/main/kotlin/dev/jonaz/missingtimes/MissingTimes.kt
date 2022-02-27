@@ -1,16 +1,11 @@
 package dev.jonaz.missingtimes
 
-import dev.jonaz.missingtimes.module.coreModule
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import dev.jonaz.missingtimes.plugins.*
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.plugins.*
+import dev.jonaz.missingtimes.module.appModule
+import dev.jonaz.missingtimes.module.databaseModule
 import org.koin.core.context.startKoin
 
 fun main() {
   startKoin {
-    modules(coreModule)
+    modules(appModule, databaseModule)
   }.run(::Application)
 }

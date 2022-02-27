@@ -4,6 +4,9 @@ val logback_version: String by project
 val gotrue_version: String by project
 val koin_version: String by project
 val exposed_version: String by project
+val hikari_version: String by project
+val classindex_version: String by project
+val postgresql_version: String by project
 
 plugins {
     application
@@ -34,11 +37,19 @@ dependencies {
     implementation("io.ktor", "ktor-server-netty-jvm", ktor_version)
     implementation("io.ktor", "ktor-server-auth-jvm", ktor_version)
     implementation("io.ktor", "ktor-server-auth-jwt-jvm", ktor_version)
+
     implementation("io.insert-koin", "koin-core", koin_version)
+
     implementation("org.jetbrains.exposed", "exposed-core", exposed_version)
     implementation("org.jetbrains.exposed", "exposed-dao", exposed_version)
     implementation("org.jetbrains.exposed", "exposed-jdbc", exposed_version)
+    implementation("org.jetbrains.exposed", "exposed-java-time", exposed_version)
+    implementation("com.zaxxer", "HikariCP", hikari_version)
+    implementation("org.postgresql", "postgresql", postgresql_version)
+
+    implementation("org.atteo.classindex", "classindex", classindex_version)
     implementation("ch.qos.logback", "logback-classic", logback_version)
+
     testImplementation("io.ktor", "ktor-server-tests-jvm", ktor_version)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlin_version)
 }
