@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
@@ -13,11 +13,20 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private route: ActivatedRoute
   ) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    if (!this.route.snapshot.data['userProfile']) {
+      await this.router.navigate(['/setup'], {
+        state: {
+          profileIsFinished: false
+        }
+      });
+      return;
+    }
+
     this.router.events.subscribe(() => {
       this.mainDrawer.nativeElement.checked = false;
     });

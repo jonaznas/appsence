@@ -4,6 +4,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { LayoutComponent } from 'src/app/layout/layout.component';
 import { authRoutes } from 'src/app/authentication/auth-routing';
 import { AuthenticationGuard } from 'src/app/authentication/authentication.guard';
+import { UserProfileResolver } from 'src/app/user/user-profile.resolver';
 
 const routes: Routes = [
   {
@@ -21,7 +22,10 @@ const topRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: routes
+    children: routes,
+    resolve: {
+      userProfile: UserProfileResolver
+    }
   }
 ];
 

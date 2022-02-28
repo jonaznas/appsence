@@ -27,15 +27,6 @@ export class SupabaseService {
     return this.supabaseClient.auth.session();
   }
 
-  public getProfile(): PromiseLike<any> {
-    const user = this.getUser();
-
-    return this.supabaseClient.from('profiles')
-      .select('username, avatar_url')
-      .eq('id', user?.id)
-      .single();
-  }
-
   public authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
     return this.supabaseClient.auth.onAuthStateChange(callback);
   }

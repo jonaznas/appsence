@@ -31,7 +31,7 @@ fun Route.user() {
           }
 
         if (query.isNotEmpty()) {
-          call.respond(query)
+          call.respond(query.first())
         } else {
           call.respond(HttpStatusCode.NotFound)
         }

@@ -6,7 +6,11 @@ import io.ktor.server.application.*
 import io.ktor.server.auth.*
 
 fun Application.configureRouting() = routing {
-  authenticate {
-    user()
+  route("/v1") {
+
+    authenticate {
+      user()
+    }
+
   }
 }

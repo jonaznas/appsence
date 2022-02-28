@@ -1,0 +1,40 @@
+<div class="max-w-md mx-auto h-screen drawer w-full">
+  <div class="flex flex-col drawer-content">
+    <div class="p-4">
+
+      <div class="pb-5">
+        <h2 class="card-title">Einrichtung</h2>
+      </div>
+
+      <div class="card bg-accent shadow-xl">
+        <div class="card-body select-none">
+          <form [formGroup]="setupForm" (ngSubmit)="finishSetup()">
+            <label class="label pt-0">
+              <span class="label-text">Wie heißt du?</span>
+            </label>
+            <div class="input-group">
+              <input [ngClass]="{'input-error': error}"
+                     type="text"
+                     formControlName="name"
+                     placeholder="Vorname"
+                     value=""
+                     class="input w-full"
+                     pattern="^[a-z0-9_-]{3,15}$">
+              <button
+                [ngClass]="{'loading': loading}"
+                [disabled]="loading"
+                type="submit"
+                class="btn btn-primary float-right">
+                Weiter
+              </button>
+            </div>
+            <label *ngIf="error" class="label pb-0">
+              <span class="label-text text-error-content">{{ error }}</span>
+            </label>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

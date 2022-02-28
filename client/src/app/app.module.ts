@@ -8,7 +8,8 @@ import { HomeModule } from 'src/app/home/home.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { IconsModule } from 'src/app/layout/icons/icons.module';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthenticationInterceptor } from 'src/app/authentication/authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     AuthenticationModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
