@@ -21,9 +21,10 @@ export class AppComponent implements OnInit {
     this.supabaseService.authChanges((event, session) => {
       switch (event) {
 
-        case 'SIGNED_IN':
+        case 'SIGNED_IN': {
           this.router.navigate(['/home']);
           break;
+        }
 
       }
     });

@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserPrincipal(
-    val email: String
+    val email: String,
+    val sub: String
 ): Principal

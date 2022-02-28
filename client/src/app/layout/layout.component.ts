@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,7 +12,8 @@ export class LayoutComponent implements OnInit {
   @ViewChild('mainDrawer') mainDrawer: ElementRef;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
   }
 

@@ -7,8 +7,8 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { HomeModule } from 'src/app/home/home.module';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { IconsModule } from 'src/app/layout/icons/icons.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,11 @@ import { AuthenticationModule } from 'src/app/authentication/authentication.modu
     LayoutModule,
     HomeModule,
     IconsModule,
-    AuthenticationModule
+    AuthenticationModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

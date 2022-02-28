@@ -13,7 +13,8 @@ fun configureAuthentication(configure: Authentication.Configuration) {
     verifier(jwtService.getVerifier())
     validate {
       UserPrincipal(
-        it.payload.getClaim("email").asString()
+        it.payload.getClaim("email").asString(),
+        it.payload.getClaim("sub").asString()
       )
     }
   }
