@@ -29,6 +29,15 @@ fun Route.user() {
 
   post("/user/profile") {
     call.receive<UserProfileDto>()
+      .runCatching { userService.createUserProfile(this) }
+      .onFailure {
+        call.respondText(
+          status = HttpStatusCode.BadRequest,
+          contentType = ContentType.Text.Plain,
+          text = it.message.toString()
+        )
+      }
+      .onSuccess { call.respond(HttpStatusCode.Created) }
   }
 }
 

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SignInComponent } from 'src/app/authentication/sign-in/sign-in.component';
 import { SignOutComponent } from 'src/app/authentication/sign-out/sign-out.component';
 import { UserSetupComponent } from 'src/app/authentication/user-setup/user-setup.component';
+import { UserSetupResolver } from 'src/app/authentication/user-setup/user-setup.resolver';
 
 export const authRoutes: Routes = [
   {
@@ -14,7 +15,10 @@ export const authRoutes: Routes = [
   },
   {
     path: 'setup',
-    component: UserSetupComponent
+    component: UserSetupComponent,
+    resolve: {
+      setup: UserSetupResolver
+    }
   },
   {
     path: '',
