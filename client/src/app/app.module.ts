@@ -10,6 +10,8 @@ import { IconsModule } from 'src/app/layout/icons/icons.module';
 import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthenticationInterceptor } from 'src/app/authentication/authentication.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,11 @@ import { AuthenticationInterceptor } from 'src/app/authentication/authentication
     HomeModule,
     IconsModule,
     AuthenticationModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     {
