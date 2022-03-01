@@ -5,12 +5,22 @@ import { LayoutComponent } from 'src/app/layout/layout.component';
 import { authRoutes } from 'src/app/authentication/auth-routing';
 import { AuthenticationGuard } from 'src/app/authentication/authentication.guard';
 import { UserProfileResolver } from 'src/app/user/user-profile.resolver';
+import { NewAbsenceComponent } from 'src/app/absence/new-absence/new-absence.component';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'absence',
+    children: [
+      {
+        path: 'new',
+        component: NewAbsenceComponent
+      }
+    ]
   }
 ];
 
