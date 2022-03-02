@@ -32,11 +32,17 @@ export class SupabaseService {
   }
 
   public signInEmail(email: string): Promise<any> {
-    return this.supabaseClient.auth.signIn({ email });
+    return this.supabaseClient.auth.signIn(
+      { email },
+      { redirectTo: environment.appUrl + '?ref=auth' }
+    );
   }
 
   public signInGoogle(): Promise<any> {
-    return this.supabaseClient.auth.signIn({ provider: 'google' });
+    return this.supabaseClient.auth.signIn(
+      { provider: 'google' },
+      { redirectTo: environment.appUrl + '?ref=auth' }
+    );
   }
 
   public signOut(): Promise<any> {

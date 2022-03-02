@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   apiUrl: 'https://missing-times.herokuapp.com',
+  appUrl: 'https://missing-times.jonaz.dev',
   endpoint: {
     userProfile: '/v1/user/profile'
   },

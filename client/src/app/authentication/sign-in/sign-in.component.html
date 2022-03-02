@@ -22,7 +22,7 @@
   <div class="flex flex-col drawer-content">
     <div class="p-4">
 
-      <div class="card bg-accent shadow-xl">
+      <div *ngIf="!preLoading" class="card bg-accent shadow-xl">
         <div class="card-body select-none">
           <div class="flex flex-col w-full border-opacity-50">
             <div (click)="signInGoogle()" class="w-100 h-10 flex cursor-pointer justify-center items-center bg-secondary rounded-md">
@@ -42,6 +42,10 @@
             </form>
           </div>
         </div>
+      </div>
+
+      <div *ngIf="preLoading" class="flex h-screen items-center justify-center">
+        <img src="assets/spinner-1.svg" class="">
       </div>
 
     </div>

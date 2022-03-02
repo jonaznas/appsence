@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SupabaseService, UserProfile } from 'src/app/authentication/supabase.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
+  preLoading: boolean;
   loading: boolean;
   user: UserProfile;
 
@@ -22,14 +23,22 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private supabaseService: SupabaseService,
     private formBuilder: FormBuilder
   ) {
     this.loading = false;
+    this.preLoading = true;
     this.user = {} as UserProfile;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const session = this.supabaseService.getSession();
+    if (session) {
+      await this.router.navigate(['/home']);
+    } else {
+      this.preLoading = false;
+    }
   }
 
   signInEmail(): void {
