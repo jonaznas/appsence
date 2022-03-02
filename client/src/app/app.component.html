@@ -1,1 +1,18 @@
+<input #loadingAppModal [checked]="appLoading" type="checkbox" id="loading-app-modal" class="modal-toggle">
+<div class="modal items-center p-5">
+  <div class="modal-box rounded-xl border-2 border-primary">
+    <div class="py-4 flex flex-col items-center">
+      <img src="assets/spinner-1.svg" alt="spinner">
+      <p class="mt-5">App wird geladen</p>
+    </div>
+  </div>
+</div>
+
+<input #appErrorModal [checked]="appError && !appLoading" type="checkbox" id="app-error-modal" class="modal-toggle">
+<div class="modal items-center p-5">
+  <div class="modal-box rounded-xl border-2 border-red-700">
+    <p class="py-4 text-center">{{ appError }}</p>
+  </div>
+</div>
+
 <router-outlet></router-outlet>

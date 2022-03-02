@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SupabaseService } from 'src/app/authentication/supabase.service';
 
@@ -9,7 +9,12 @@ import { SupabaseService } from 'src/app/authentication/supabase.service';
 })
 export class AppComponent implements OnInit {
 
+  appLoading: boolean;
+  appError: string | null;
   session = this.supabaseService.getSession();
+
+  @ViewChild('loadingAppModal') loadingAppModal: ElementRef;
+  @ViewChild('appErrorModal') appErrorModal: ElementRef;
 
   constructor(
     private supabaseService: SupabaseService,
@@ -22,11 +27,24 @@ export class AppComponent implements OnInit {
       switch (event) {
 
         case 'SIGNED_IN': {
-          this.router.navigate(['/home']);
+          this.loadApp();
           break;
         }
 
       }
     });
+  }
+
+  loadApp() {
+    this.appLoading = true;
+    this.appError = null;
+    this.router.navigate(['/home'])
+      .catch(() => {
+        this.appLoading = false;
+        this.appError = 'Fehler beim laden der App.';
+      })
+      .then(() => {
+        this.appLoading = false;
+      });
   }
 }
