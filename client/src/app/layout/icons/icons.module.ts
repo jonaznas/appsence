@@ -9,7 +9,9 @@ import {
   IconLogout,
   IconPlus,
   IconCalendarPlus,
-  IconCalendarEvent
+  IconCalendarEvent,
+  IconChevronRight,
+  IconCalendarTime
 } from 'angular-tabler-icons/icons';
 
 const icons = {
@@ -20,7 +22,9 @@ const icons = {
   IconLogout,
   IconPlus,
   IconCalendarPlus,
-  IconCalendarEvent
+  IconCalendarEvent,
+  IconChevronRight,
+  IconCalendarTime
 };
 
 @NgModule({

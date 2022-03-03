@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
       switch (event) {
 
         case 'SIGNED_IN': {
-          console.log('Signed in');
           this.loadApp();
           break;
         }
@@ -47,14 +46,6 @@ export class AppComponent implements OnInit {
   loadApp() {
     this.appLoading = true;
     this.appError = null;
-
-    /*const queryParams = this.route.snapshot.queryParams as any;
-    this.router.events
-      .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-      .subscribe((events: RoutesRecognized[]) => {
-        console.log('previous url', events[0].urlAfterRedirects);
-        console.log('current url', events[1].urlAfterRedirects);
-      });*/
 
     this.router.navigate(['/home'])
       .catch(() => {
