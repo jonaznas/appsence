@@ -7,7 +7,8 @@ import { AuthenticationGuard } from 'src/app/authentication/authentication.guard
 import { UserProfileResolver } from 'src/app/user/user-profile.resolver';
 import { NewAbsenceComponent } from 'src/app/absence/new-absence/new-absence.component';
 import { NewAbsenceTodayComponent } from 'src/app/absence/new-absence-today/new-absence-today.component';
-import { NewAbsenceDateComponent } from 'src/app/absence/new-absence/new-absence-date/new-absence-date.component';
+import { NewAbsenceDateComponent } from 'src/app/absence/new-absence-date/new-absence-date.component';
+import { AbsenceComponent } from 'src/app/absence/absence.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,12 @@ const routes: Routes = [
     path: 'absence',
     children: [
       {
+        path: '',
+        component: AbsenceComponent
+      },
+      {
         path: 'new',
-        component: NewAbsenceComponent,
+        component: NewAbsenceComponent
       },
       {
         path: 'new/today',

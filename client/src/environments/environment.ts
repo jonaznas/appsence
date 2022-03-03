@@ -3,7 +3,10 @@ export const environment = {
   apiUrl: 'http://localhost:8080',
   appUrl: 'http://localhost:4200',
   endpoint: {
-    userProfile: '/v1/user/profile'
+    userProfile: '/v1/user/profile',
+    absence: {
+      newAbsenceToday: '/v1/absence/new/today'
+    }
   },
   supabase: {
     url: 'https://kgjzqbfwrbwqspwmqjqx.supabase.co',

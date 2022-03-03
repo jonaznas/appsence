@@ -3,7 +3,10 @@ export const environment = {
   apiUrl: 'https://missing-times.herokuapp.com',
   appUrl: 'https://missing-times.jonaz.dev',
   endpoint: {
-    userProfile: '/v1/user/profile'
+    userProfile: '/v1/user/profile',
+    absence: {
+      newAbsenceToday: '/v1/absence/new/today'
+    }
   },
   supabase: {
     url: 'https://kgjzqbfwrbwqspwmqjqx.supabase.co',

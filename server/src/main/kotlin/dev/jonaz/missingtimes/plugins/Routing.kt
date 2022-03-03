@@ -1,5 +1,6 @@
 package dev.jonaz.missingtimes.plugins
 
+import dev.jonaz.missingtimes.route.absence
 import dev.jonaz.missingtimes.route.user
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
@@ -10,6 +11,7 @@ fun Application.configureRouting() = routing {
 
     authenticate {
       user()
+      absence()
     }
 
   }

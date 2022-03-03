@@ -1,1 +1,90 @@
-<p>new-absence-today works!</p>
+<input [checked]="error" type="checkbox" class="modal-toggle">
+<div class="modal items-center p-5">
+  <div class="modal-box rounded-xl border-2 border-red-700">
+    <p class="py-4">Beim eintragen ist ein Fehler aufgetreten. Versuche es erneut.</p>
+    <div class="modal-action">
+      <label routerLink="/absence/new" class="btn">Zurück</label>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-between mb-5">
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <li>
+        Neue Abwesenheit
+      </li>
+      <li>
+        <b>Heute</b>
+      </li>
+    </ul>
+  </div>
+  <button routerLink="/absence/new" class="btn btn-sm btn-secondary">Zurück</button>
+</div>
+
+<form [formGroup]="newAbsenceForm" (ngSubmit)="submitAbsence()">
+  <div class="card bg-accent shadow-xl">
+    <div class="card-body select-none">
+      <div class="flex flex-col w-full border-opacity-50">
+        <div class="mb-2">
+          <label class="label">
+            <span class="label-text">Wie viele Stunden fehlst du heute?</span>
+          </label>
+          <input
+            formControlName="hours"
+            type="number"
+            min="1"
+            max="24"
+            value="1"
+            class="input input-bordered input-lg w-25">
+        </div>
+
+        <div class="mb-2">
+          <label class="label">
+            <span class="label-text">Art des Fehlens</span>
+          </label>
+          <select formControlName="type" class="select w-full">
+            <option value="0" selected>Keine Auswahl</option>
+            <option value="1">Krank</option>
+            <option value="2">Termin</option>
+          </select>
+        </div>
+
+        <div class="form-control mb-4">
+          <label class="label cursor-pointer">
+            <span class="label-text">Muss entschuldigt werden</span>
+            <input formControlName="mustExcused" type="checkbox" checked="checked" class="checkbox checkbox-primary">
+          </label>
+        </div>
+
+        <div *ngIf="!showAnnotations" class="w-full">
+          <label class="label float-right">
+            <a (click)="showAnnotations = true" class="label-text-alt link underline">Anmerkungen hinzufügen</a>
+          </label>
+        </div>
+
+        <div *ngIf="showAnnotations">
+          <label class="label">
+            <span class="label-text">Anmerkungen</span>
+            <span (click)="showAnnotations = false" class="label-text-alt link underline">Ausblenden</span>
+          </label>
+          <textarea
+            formControlName="annotation"
+            maxlength="100"
+            rows="3"
+            class="textarea w-full"
+            placeholder="Text bis 100 Zeichen">
+          </textarea>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <button
+    [ngClass]="{'loading': loading}"
+    [disabled]="loading || !newAbsenceForm.valid"
+    type="submit"
+    class="btn btn-primary mt-5 w-full">
+    Fehlzeit hinzufügen
+  </button>
+</form>
