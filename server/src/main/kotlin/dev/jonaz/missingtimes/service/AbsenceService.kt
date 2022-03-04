@@ -28,4 +28,6 @@ class AbsenceService {
       it[absenceDomain.annotation] = annotation
     }
   }
+
+
 }

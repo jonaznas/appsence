@@ -19,15 +19,21 @@ fun Route.absence() {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
 
-    call.receive<AbsenceNewToday>()
+    call.receive<AbsenceNewTodayDto>()
       .runCatching { absenceService.newAbsenceToday(sub, hours, type, mustExcused, annotation) }
-      .onFailure { call.respondText(status = HttpStatusCode.BadRequest, text = it.message.toString()) }
+      .onFailure {
+        call.respondText(
+          status = HttpStatusCode.BadRequest,
+          contentType = ContentType.Text.Plain,
+          text = it.message ?: "Unbekannter Fehler"
+        )
+      }
       .onSuccess { call.respond(HttpStatusCode.Created) }
   }
 }
 
 @Serializable
-data class AbsenceNewToday(
+data class AbsenceNewTodayDto(
   val hours: Int,
   val type: Int,
   val mustExcused: Boolean,
