@@ -12,7 +12,7 @@ export class NewAbsenceTodayComponent implements OnInit {
 
   loading: boolean;
   showAnnotations: boolean;
-  error: boolean;
+  error: string | null;
   newAbsenceForm = this.formBuilder.group({
     hours: [1, Validators.required],
     type: [0, Validators.required],
@@ -40,7 +40,7 @@ export class NewAbsenceTodayComponent implements OnInit {
       this.newAbsenceForm.value.annotation
     ).subscribe({
       error: err => {
-        this.error = true;
+        this.error = err.error;
         this.loading = false;
       },
       next: () => {

@@ -5,7 +5,8 @@ export const environment = {
   endpoint: {
     userProfile: '/v1/user/profile',
     absence: {
-      newAbsenceToday: '/v1/absence/new/today'
+      newAbsenceToday: '/v1/absence/new/today',
+      getAbsences: '/v1/absences'
     }
   },
   supabase: {

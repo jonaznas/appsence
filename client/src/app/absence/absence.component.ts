@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbsenceService } from 'src/app/absence/absence.service';
 
 @Component({
   selector: 'app-absence',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AbsenceComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private absenceService: AbsenceService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.absenceService.getAbsencesForDate(new Date())
+      .subscribe(absences => {
+        console.log(absences);
+      });
+  }
 }

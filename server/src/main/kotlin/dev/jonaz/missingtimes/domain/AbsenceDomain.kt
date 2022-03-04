@@ -13,7 +13,7 @@ class AbsenceDomain : Table("absence") {
   val mustExcused = bool("must_excused")
   val date = date("date")
   val annotation = text("annotation").nullable()
-  val createdAt = timestamp("created_at").nullable()
+  val createdAt = timestamp("created_at")
 
   override val primaryKey = PrimaryKey(id)
 }

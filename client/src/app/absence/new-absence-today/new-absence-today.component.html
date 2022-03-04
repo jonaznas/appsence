@@ -1,9 +1,9 @@
-<input [checked]="error" type="checkbox" class="modal-toggle">
+<input [checked]="!!error" type="checkbox" class="modal-toggle">
 <div class="modal items-center p-5">
   <div class="modal-box rounded-xl border-2 border-red-700">
-    <p class="py-4">Beim eintragen ist ein Fehler aufgetreten. Versuche es erneut.</p>
+    <p class="py-4">{{ error || 'Beim eintragen ist ein Fehler aufgetreten. Versuche es erneut.' }}</p>
     <div class="modal-action">
-      <label routerLink="/absence/new" class="btn">Zurück</label>
+      <label (click)="error = null" class="btn">Schließen</label>
     </div>
   </div>
 </div>

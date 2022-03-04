@@ -18,4 +18,12 @@ export class AbsenceService {
       hours, type, mustExcused, annotation
     });
   }
+
+  public getAbsencesForDate(date: Date): Observable<any> {
+    return this.http.get(environment.endpoint.absence.getAbsences, {
+      params: {
+        date: date.toISOString().split('T')[0]
+      }
+    });
+  }
 }
