@@ -2,10 +2,12 @@ package dev.jonaz.missingtimes.service
 
 import dev.jonaz.missingtimes.domain.AbsenceDomain
 import dev.jonaz.missingtimes.route.AbsenceDto
+import io.ktor.server.http.*
 import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 import java.time.LocalDate
 import java.util.*
 
@@ -33,7 +35,7 @@ class AbsenceService {
       }
     }
 
-  fun getAbsences(user: UUID, date: LocalDate) = transaction {
+  fun getAbsencesForDate(user: UUID, date: LocalDate) = transaction {
     absenceDomain.select {
       absenceDomain.user eq user and (absenceDomain.date eq date)
     }.map {
@@ -54,5 +56,22 @@ class AbsenceService {
     }.sumOf {
       it[absenceDomain.hours]
     }
+  }
+
+  fun getAbsencesHistoryByDays(user: UUID, days: Int) = transaction {
+    absenceDomain.select {
+      absenceDomain.user eq user
+    }.groupBy { it[absenceDomain.date] }.map { entry ->
+      AbsenceDto(
+        date = entry.key.toString(),
+        hours = entry.value.sumOf { it[absenceDomain.hours] },
+        type = entry.value.first()[absenceDomain.type],
+        mustExcused = entry.value.first()[absenceDomain.mustExcused],
+        annotation = entry.value.first()[absenceDomain.annotation],
+        createdAt = entry.value.first()[absenceDomain.createdAt].toString()
+      )
+    }.sortedByDescending {
+      it.date
+    }.take(days)
   }
 }

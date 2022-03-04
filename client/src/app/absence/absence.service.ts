@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +20,30 @@ export class AbsenceService {
   }
 
   public getAbsencesForDate(date: Date): Observable<any> {
-    return this.http.get(environment.endpoint.absence.getAbsences, {
+    return this.http.get(environment.endpoint.absence.getAbsencesForDate, {
       params: {
         date: date.toISOString().split('T')[0]
       }
     });
+  }
+
+  public getLastAbsencesByDays(days: number): Observable<any> {
+    return this.http.get(environment.endpoint.absence.getAbsenceHistoryByDays, {
+      params: {
+        days
+      }
+    }).pipe(
+      map((absences: any) => {
+        return absences.map((absence: any) => {
+          return {
+            date: new Date(absence.date),
+            hours: absence.hours,
+            type: absence.type,
+            mustExcused: absence.mustExcused,
+            annotation: absence.annotation
+          };
+        });
+      })
+    );
   }
 }

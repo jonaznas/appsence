@@ -11,7 +11,6 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.util.*
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
 import java.util.*
@@ -43,14 +42,22 @@ fun Route.absence() {
       .onSuccess { call.respond(HttpStatusCode.Created) }
   }
 
-  get("/absences") {
+  get("/absences-for-date") {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
     val dateParam = call.request.queryParameters.getOrFail("date")
 
     kotlin.runCatching { return@runCatching LocalDate.parse(dateParam) }
       .onFailure { call.respond(HttpStatusCode.BadRequest) }
-      .onSuccess { call.respond(absenceService.getAbsences(sub, it)) }
+      .onSuccess { call.respond(absenceService.getAbsencesForDate(sub, it)) }
+  }
+
+  get("/absence/history") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+    val days = call.request.queryParameters["days"]?.toIntOrNull() ?: 30
+
+    call.respond(absenceService.getAbsencesHistoryByDays(sub, days))
   }
 }
 

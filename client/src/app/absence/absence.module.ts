@@ -6,14 +6,14 @@ import { NewAbsenceTodayComponent } from './new-absence-today/new-absence-today.
 import { NewAbsenceDateComponent } from './new-absence-date/new-absence-date.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AbsenceComponent } from './absence.component';
+import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
 
 @NgModule({
   declarations: [
     NewAbsenceComponent,
     NewAbsenceTodayComponent,
     NewAbsenceDateComponent,
-    AbsenceComponent
+    AbsenceHistoryComponent
   ],
   imports: [
     CommonModule,
