@@ -2,7 +2,12 @@
   <h2 class="card-title">Deine letzten Fehlzeiten</h2>
 </div>
 
-<div *ngFor="let absence of absences" tabindex="0" class="collapse collapse-arrow border border-base-300 bg-accent rounded-box">
+<div *ngIf="!absences" class="flex justify-center">
+  <img src="assets/spinner-1.svg" alt="spinner">
+</div>
+
+<div *ngFor="let absence of absences" tabindex="0"
+     class="collapse collapse-arrow border border-base-300 bg-accent rounded-box">
   <div class="collapse-title text-xl font-medium">
     {{ absence.date | date: 'dd.MM.yyyy' }}
   </div>
