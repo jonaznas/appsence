@@ -2,9 +2,17 @@ name: deploy client to cloudflare
 
 on:
   workflow_dispatch:
+    inputs:
+        environment:
+          type: choice
+          description: Environment to deploy
+          options:
+          - production
+          - preview
 
 jobs:
-  deploy:
+  production-deploy:
+    if: github.event.inputs.environment == 'production'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,4 +25,20 @@ jobs:
           email: ${{ secrets.CLOUDFLARE_EMAIL }}
           account-id: ${{ secrets.CLOUDFLARE_ACCOUNT }}
           project-name: ${{ secrets.CLOUDFLARE_PROJECT }}
-          
+          production: true
+
+  preview-deploy:
+    if: github.event.inputs.environment == 'preview'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: create deployment
+        uses: tomjschuster/cloudflare-pages-deploy-action@v0.0.10
+        with:
+          api-key: ${{ secrets.CLOUDFLARE_TOKEN }}
+          email: ${{ secrets.CLOUDFLARE_EMAIL }}
+          account-id: ${{ secrets.CLOUDFLARE_ACCOUNT }}
+          project-name: ${{ secrets.CLOUDFLARE_PROJECT }}
+          preview: true
