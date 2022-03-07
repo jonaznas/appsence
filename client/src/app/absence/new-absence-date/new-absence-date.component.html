@@ -15,7 +15,7 @@
         Neue Abwesenheit
       </li>
       <li>
-        <b>Bestimmtes Datum</b>
+        <b>Datum</b>
       </li>
     </ul>
   </div>
@@ -28,7 +28,7 @@
       <div class="flex flex-col w-full border-opacity-50">
         <div class="mb-2">
           <label class="label">
-            <span class="label-text">Wie viele Stunden fehlst du heute?</span>
+            <span class="label-text">Wie viele Stunden?</span>
           </label>
           <input
             formControlName="hours"
@@ -55,7 +55,12 @@
           <label class="label">
             <span class="label-text">Wähle ein Datum aus</span>
           </label>
-          <input type="date" class="rounded bg-base-100 w-100">
+          <div class="input-group">
+            <input #datePicker formControlName="date" type="date" class="input rounded-lg bg-base-100">
+            <button (click)="triggerDatePicker()" type="button" class="btn btn-square">
+              <i-tabler name="calendar-event"></i-tabler>
+            </button>
+          </div>
         </div>
 
         <div class="form-control mb-4">

@@ -42,6 +42,30 @@ fun Route.absence() {
       .onSuccess { call.respond(HttpStatusCode.Created) }
   }
 
+  post("/absence/new/date") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+
+    call.receive<AbsenceNewDateDto>()
+      .runCatching {
+        val totalHoursToday = absenceService.getAbsenceHoursForDate(sub, LocalDate.now()) + hours
+
+        if (totalHoursToday >= 24) {
+          throw BadRequestException("Du kannst an einem Tag nicht mehr als 24 Stunden fehlen.")
+        }
+
+        absenceService.newAbsence(sub, LocalDate.parse(date), hours, type, mustExcused, annotation)
+      }
+      .onFailure {
+        call.respondText(
+          status = HttpStatusCode.BadRequest,
+          contentType = ContentType.Text.Plain,
+          text = it.message ?: "Unbekannter Fehler"
+        )
+      }
+      .onSuccess { call.respond(HttpStatusCode.Created) }
+  }
+
   get("/absences-for-date") {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
@@ -65,6 +89,15 @@ fun Route.absence() {
 data class AbsenceNewTodayDto(
   val hours: Int,
   val type: Int,
+  val mustExcused: Boolean,
+  val annotation: String?
+)
+
+@Serializable
+data class AbsenceNewDateDto(
+  val hours: Int,
+  val type: Int,
+  val date: String,
   val mustExcused: Boolean,
   val annotation: String?
 )

@@ -19,6 +19,12 @@ export class AbsenceService {
     });
   }
 
+  public newAbsenceDate(hours: number, type: number, date: string, mustExcused: boolean, annotation?: string) {
+    return this.http.post(environment.endpoint.absence.newAbsenceDate, {
+      hours, type, date, mustExcused, annotation
+    });
+  }
+
   public getAbsencesForDate(date: Date): Observable<any> {
     return this.http.get(environment.endpoint.absence.getAbsencesForDate, {
       params: {

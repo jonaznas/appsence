@@ -6,6 +6,7 @@ export const environment = {
     userProfile: '/v1/user/profile',
     absence: {
       newAbsenceToday: '/v1/absence/new/today',
+      newAbsenceDate: '/v1/absence/new/date',
       getAbsencesForDate: '/v1/absences-for-date',
       getAbsenceHistoryByDays: '/v1/absence/history'
     }

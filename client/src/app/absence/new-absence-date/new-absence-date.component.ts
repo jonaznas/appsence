@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AbsenceService } from 'src/app/absence/absence.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-absence-date',
@@ -19,15 +21,39 @@ export class NewAbsenceDateComponent implements OnInit {
     annotation: []
   });
 
+  @ViewChild('datePicker') datePicker: ElementRef;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private absenceService: AbsenceService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
   }
 
-  submitAbsence() {
+  triggerDatePicker() {
+    this.datePicker.nativeElement.showPicker();
+  }
+
+  async submitAbsence() {
     this.loading = true;
+
+    this.absenceService.newAbsenceDate(
+      this.newAbsenceForm.value.hours,
+      this.newAbsenceForm.value.type,
+      this.newAbsenceForm.value.date,
+      this.newAbsenceForm.value.mustExcused,
+      this.newAbsenceForm.value.annotation
+    ).subscribe({
+      error: err => {
+        this.error = err.error;
+        this.loading = false;
+      },
+      next: () => {
+        this.router.navigate(['/absence']);
+      }
+    });
   }
 }
