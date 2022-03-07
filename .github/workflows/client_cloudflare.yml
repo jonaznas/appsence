@@ -1,4 +1,4 @@
-name: deploy client to cloudflare pages
+name: deploy client to cloudflare
 
 on:
   workflow_dispatch:
@@ -10,10 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: deploy
+      - name: create deployment
         uses: Cyb3r-Jak3/actions-cloudflare-pages@v1.0.1
         with:
           account: ${{ secrets.CLOUDFLARE_ACCOUNT }}
           project: ${{ secrets.CLOUDFLARE_PROJECT }}
           email: ${{ secrets.CLOUDFLARE_EMAIL }}
           global_token: ${{ secrets.CLOUDFLARE_TOKEN }}
+          
+      - name: wait for deployment
+        uses: WalshyDev/cf-pages-await@v1.1.0
+        with:
+          accountEmail: ${{ secrets.CLOUDFLARE_EMAIL }}
+          apiKey: ${{ secrets.CLOUDFLARE_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT }}
+          project: ${{ secrets.CLOUDFLARE_PROJECT }}
