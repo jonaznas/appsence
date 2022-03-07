@@ -8,13 +8,15 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
 import { FormatDistanceToNowPipeModule } from 'ngx-date-fns';
+import { AbsenceHistoryItemComponent } from './absence-history/absence-history-item/absence-history-item.component';
 
 @NgModule({
   declarations: [
     NewAbsenceComponent,
     NewAbsenceTodayComponent,
     NewAbsenceDateComponent,
-    AbsenceHistoryComponent
+    AbsenceHistoryComponent,
+    AbsenceHistoryItemComponent
   ],
   imports: [
     CommonModule,

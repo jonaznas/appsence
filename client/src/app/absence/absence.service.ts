@@ -42,6 +42,7 @@ export class AbsenceService {
       map((absences: any) => {
         return absences.map((absence: any) => {
           return {
+            id: absence.id,
             date: new Date(absence.date),
             hours: absence.hours,
             type: absence.type,
@@ -52,5 +53,11 @@ export class AbsenceService {
         });
       })
     );
+  }
+
+  public updateAbsence(id: number, isExcused: boolean) {
+    return this.http.put(environment.endpoint.absence.updateAbsence, {
+      id, isExcused
+    });
   }
 }

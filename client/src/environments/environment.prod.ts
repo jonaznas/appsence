@@ -8,7 +8,8 @@ export const environment = {
       newAbsenceToday: '/v1/absence/new/today',
       newAbsenceDate: '/v1/absence/new/date',
       getAbsencesForDate: '/v1/absences-for-date',
-      getAbsenceHistoryByDays: '/v1/absence/history'
+      getAbsenceHistoryByDays: '/v1/absence/history',
+      updateAbsence: '/v1/absence/update'
     }
   },
   supabase: {

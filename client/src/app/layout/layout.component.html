@@ -8,11 +8,11 @@
         </label>
       </div>
       <div class="flex-1 px-2 mx-2 normal-case text-xl text-middle">Missing Times</div>
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost rounded-btn">
+      <div (click)="toggleDropdown($event)" class="dropdown  dropdown-end">
+        <label class="btn btn-ghost rounded-btn">
           <i-tabler name="chevron-down"></i-tabler>
         </label>
-        <ul tabindex="0" class="p-2 shadow menu dropdown-content bg-accent rounded-box w-52 mt-16">
+        <ul class="p-2 shadow menu dropdown-content bg-accent rounded-box w-52 mt-24">
           <li>
             <a routerLink="sign-out">
               <i-tabler name="logout"></i-tabler>

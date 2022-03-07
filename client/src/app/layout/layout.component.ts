@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
 
@@ -29,5 +29,13 @@ export class LayoutComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.mainDrawer.nativeElement.checked = false;
     });
+  }
+
+  toggleDropdown(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    const collapse = target.closest('.dropdown');
+    if (collapse) {
+      collapse.classList.toggle('dropdown-open');
+    }
   }
 }

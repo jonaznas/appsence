@@ -1,0 +1,67 @@
+<div [ngClass]="{'border border-red-500': absence.mustExcused && !absence.isExcused}"
+     class="collapse collapse-arrow bg-accent rounded-box mb-2">
+  <div (click)="toggleCollapse($event)" class="collapse-title text-xl font-medium">
+    <div class="flex items-center">
+      <div>
+        <b>{{ absence.hours }}</b> Stunden
+      </div>
+      <div class="divider divider-horizontal"></div>
+      <div class="pl-1">
+        <div class="font-medium text-xs">
+          {{ printDistanceToNow(absence.date) }}
+        </div>
+        <div class="text-gray-600 dark:text-gray-200 text-sm">
+          {{ absence.date | date: 'dd.MM.yyyy' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="collapse-content">
+
+    <div class="flex items-center relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
+      <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+        <i-tabler
+          *ngIf="absence.mustExcused && absence.isExcused || !absence.mustExcused"
+          name="check" class="text-green-500">
+        </i-tabler>
+        <i-tabler
+          *ngIf="absence.mustExcused && !absence.isExcused"
+          name="alert-triangle" class="text-red-500">
+        </i-tabler>
+      </div>
+      <div class="ml-3">
+        <p *ngIf="absence.mustExcused && absence.isExcused" class="font-medium">Entschuldigt</p>
+        <p *ngIf="absence.mustExcused && !absence.isExcused" class="font-medium">Unentschuldigt</p>
+        <p *ngIf="!absence.mustExcused" class="text-sm">Muss nicht entschuldigt werden.</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
+      <p>Grund</p>
+      <div [ngSwitch]="absence.type">
+        <p *ngSwitchDefault class="font-medium">Kein Grund</p>
+        <p *ngSwitchCase="1" class="font-medium">Krank</p>
+        <p *ngSwitchCase="2" class="font-medium">Termin</p>
+      </div>
+    </div>
+
+    <div *ngIf="absence.annotation"
+         class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden">
+      <p>Anmerkung</p>
+      <p>{{ absence.annotation }}</p>
+    </div>
+
+    <button
+      *ngIf="absence.mustExcused"
+      [ngSwitch]="absence.isExcused"
+      [ngClass]="{'loading': loading}"
+      [disabled]="loading"
+      (click)="updateAbsence(absence.id, !absence.isExcused)"
+      type="submit"
+      class="btn btn-sm mt-5 float-right">
+      <span *ngSwitchCase="true">Als unentschuldigt markieren</span>
+      <span *ngSwitchCase="false">Als entschuldigt markieren</span>
+    </button>
+
+  </div>
+</div>

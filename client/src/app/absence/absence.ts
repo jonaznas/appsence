@@ -1,4 +1,5 @@
 export type Absence = {
+  id: number;
   date: string;
   hours: number;
   type: number;

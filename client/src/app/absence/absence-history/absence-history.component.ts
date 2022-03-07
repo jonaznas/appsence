@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbsenceService } from 'src/app/absence/absence.service';
 import { Absence } from 'src/app/absence/absence';
-import { formatDistanceToNow, isToday, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 
 @Component({
@@ -11,6 +11,7 @@ import { de } from 'date-fns/locale';
 })
 export class AbsenceHistoryComponent implements OnInit {
 
+  absenceHistory: any[];
   absences: Absence[];
 
   constructor(
@@ -22,20 +23,39 @@ export class AbsenceHistoryComponent implements OnInit {
     this.absenceService.getLastAbsencesByDays(90)
       .subscribe(absences => {
         this.absences = absences;
-        console.log(this.absences);
+        this.absenceHistory = this.groupDates(absences);
+        console.log(this.groupDates(absences));
       });
   }
 
-  printDistanceToNow(dateString: string) {
-    const date = new Date(dateString);
+  groupDates(absences: Absence[]) {
+    const groupedDates: any = {};
+    absences.forEach((absence: Absence) => {
+      const dt = new Date(absence.date);
+      const year = dt.getFullYear();
+      const month = dt.getMonth() + 1;
 
-    if (isToday((date))) {
-      return 'Heute';
-    }
+      const key = `${ year }-${ month }`;
+      if (key in groupedDates) {
+        groupedDates[key].absences = [...groupedDates[key].absences, absence];
+      } else {
+        groupedDates[key] = {
+          year,
+          month,
+          absences: [absence]
+        };
+      }
 
-    return formatDistanceToNow(date, {
-      locale: de,
-      addSuffix: true
     });
+
+    return Object.values(groupedDates);
+  }
+
+  getMonthName(month: number) {
+    return format(
+      new Date(0, month - 1),
+      'MMMM',
+      { locale: de }
+    );
   }
 }
