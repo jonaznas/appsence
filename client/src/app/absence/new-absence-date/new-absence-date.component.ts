@@ -35,6 +35,7 @@ export class NewAbsenceDateComponent implements OnInit {
 
   triggerDatePicker() {
     this.datePicker.nativeElement.showPicker();
+    this.datePicker.nativeElement.click();
   }
 
   async submitAbsence() {
