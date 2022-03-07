@@ -12,7 +12,9 @@ import {
   IconCalendarEvent,
   IconChevronRight,
   IconCalendarTime,
-  IconList
+  IconList,
+  IconCheck,
+  IconAlertTriangle
 } from 'angular-tabler-icons/icons';
 
 const icons = {
@@ -26,7 +28,9 @@ const icons = {
   IconCalendarEvent,
   IconChevronRight,
   IconCalendarTime,
-  IconList
+  IconList,
+  IconCheck,
+  IconAlertTriangle
 };
 
 @NgModule({

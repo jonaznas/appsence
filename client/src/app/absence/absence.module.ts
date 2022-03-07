@@ -7,6 +7,7 @@ import { NewAbsenceDateComponent } from './new-absence-date/new-absence-date.com
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
+import { FormatDistanceToNowPipeModule } from 'ngx-date-fns';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence
     CommonModule,
     IconsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormatDistanceToNowPipeModule
   ]
 })
 export class AbsenceModule { }

@@ -44,6 +44,7 @@ class AbsenceService {
         hours = it[absenceDomain.hours],
         type = it[absenceDomain.type],
         mustExcused = it[absenceDomain.mustExcused],
+        isExcused = it[absenceDomain.isExcused],
         annotation = it[absenceDomain.annotation],
         createdAt = it[absenceDomain.createdAt].toString()
       )
@@ -67,6 +68,7 @@ class AbsenceService {
         hours = entry.value.sumOf { it[absenceDomain.hours] },
         type = entry.value.first()[absenceDomain.type],
         mustExcused = entry.value.first()[absenceDomain.mustExcused],
+        isExcused = entry.value.first()[absenceDomain.isExcused],
         annotation = entry.value.first()[absenceDomain.annotation],
         createdAt = entry.value.first()[absenceDomain.createdAt].toString()
       )

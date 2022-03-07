@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbsenceService } from 'src/app/absence/absence.service';
 import { Absence } from 'src/app/absence/absence';
+import { formatDistanceToNow, isToday, parseISO } from 'date-fns';
+import { de } from 'date-fns/locale';
 
 @Component({
   selector: 'app-absence',
@@ -22,5 +24,18 @@ export class AbsenceHistoryComponent implements OnInit {
         this.absences = absences;
         console.log(this.absences);
       });
+  }
+
+  printDistanceToNow(dateString: string) {
+    const date = new Date(dateString);
+
+    if (isToday((date))) {
+      return 'Heute';
+    }
+
+    return formatDistanceToNow(date, {
+      locale: de,
+      addSuffix: true
+    });
   }
 }

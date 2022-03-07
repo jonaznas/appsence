@@ -7,11 +7,57 @@
 </div>
 
 <div *ngFor="let absence of absences" tabindex="0"
-     class="collapse collapse-arrow border border-base-300 bg-accent rounded-box">
+     [ngClass]="{'border border-red-500': absence.mustExcused && !absence.isExcused}"
+     class="collapse collapse-arrow border border-base-300 bg-accent rounded-box mb-2">
   <div class="collapse-title text-xl font-medium">
-    {{ absence.date | date: 'dd.MM.yyyy' }}
+    <div class="flex items-center">
+      <div>
+        <b>{{ absence.hours }}</b> Stunden
+      </div>
+      <div class="divider divider-horizontal"></div>
+      <div class="pl-1">
+        <div class="font-medium text-xs">
+          {{ printDistanceToNow(absence.date) }}
+        </div>
+        <div class="text-gray-600 dark:text-gray-200 text-sm">
+          {{ absence.date | date: 'dd.MM.yyyy' }}
+        </div>
+      </div>
+    </div>
   </div>
   <div class="collapse-content">
-    <p>todo</p>
+
+    <div class="flex items-center relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
+      <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+        <i-tabler
+          *ngIf="absence.mustExcused && absence.isExcused || !absence.mustExcused"
+          name="check" class="text-primary">
+        </i-tabler>
+        <i-tabler
+          *ngIf="absence.mustExcused && !absence.isExcused"
+          name="alert-triangle" class="text-red-500">
+        </i-tabler>
+      </div>
+      <div class="ml-3">
+        <p *ngIf="absence.mustExcused && absence.isExcused" class="font-medium">Entschuldigt</p>
+        <p *ngIf="absence.mustExcused && !absence.isExcused" class="font-medium">Unentschuldigt</p>
+        <p *ngIf="!absence.mustExcused" class="text-sm">Muss nicht entschuldigt werden.</p>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
+        <p>Grund</p>
+        <div [ngSwitch]="absence.type">
+          <p *ngSwitchDefault class="font-medium">Kein Grund</p>
+          <p *ngSwitchCase="1" class="font-medium">Krank</p>
+          <p *ngSwitchCase="2" class="font-medium">Termin</p>
+      </div>
+    </div>
+
+    <div *ngIf="absence.annotation" class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden">
+        <p>Anmerkung</p>
+        <p>{{ absence.annotation }}</p>
+    </div>
+
   </div>
 </div>

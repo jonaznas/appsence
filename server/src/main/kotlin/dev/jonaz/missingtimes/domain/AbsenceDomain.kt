@@ -11,6 +11,7 @@ class AbsenceDomain : Table("absence") {
   val hours = integer("hours")
   val type = integer("type")
   val mustExcused = bool("must_excused")
+  val isExcused = bool("is_excused")
   val date = date("date")
   val annotation = text("annotation").nullable()
   val createdAt = timestamp("created_at")

@@ -40,6 +40,7 @@ export class AbsenceService {
             hours: absence.hours,
             type: absence.type,
             mustExcused: absence.mustExcused,
+            isExcused: absence.isExcused,
             annotation: absence.annotation
           };
         });

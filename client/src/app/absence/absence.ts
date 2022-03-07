@@ -2,7 +2,8 @@ export type Absence = {
   date: string;
   hours: number;
   type: number;
-  mustExcuse: boolean;
+  mustExcused: boolean;
+  isExcused: boolean;
   annotation: string;
   createdAt: string;
 };

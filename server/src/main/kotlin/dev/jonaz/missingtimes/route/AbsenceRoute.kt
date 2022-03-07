@@ -75,6 +75,7 @@ data class AbsenceDto(
   val hours: Int,
   val type: Int,
   val mustExcused: Boolean,
+  val isExcused: Boolean,
   val annotation: String?,
   val createdAt: String
 )
