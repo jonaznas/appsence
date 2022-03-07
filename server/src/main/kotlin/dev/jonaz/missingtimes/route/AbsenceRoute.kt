@@ -83,6 +83,24 @@ fun Route.absence() {
 
     call.respond(absenceService.getAbsencesHistoryByDays(sub, days))
   }
+
+  put("/absence/update") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+
+    call.receive<AbsenceUpdateDto>()
+      .runCatching {
+        absenceService.updateAbsence(sub, id, isExcused)
+      }
+      .onFailure {
+        call.respondText(
+          status = HttpStatusCode.BadRequest,
+          contentType = ContentType.Text.Plain,
+          text = it.message ?: "Unbekannter Fehler"
+        )
+      }
+      .onSuccess { call.respond(HttpStatusCode.OK) }
+  }
 }
 
 @Serializable
@@ -103,7 +121,14 @@ data class AbsenceNewDateDto(
 )
 
 @Serializable
+data class AbsenceUpdateDto(
+  val id: Int,
+  val isExcused: Boolean
+)
+
+@Serializable
 data class AbsenceDto(
+  val id: Int,
   val date: String,
   val hours: Int,
   val type: Int,

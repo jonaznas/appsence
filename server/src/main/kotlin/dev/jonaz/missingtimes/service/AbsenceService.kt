@@ -40,6 +40,7 @@ class AbsenceService {
       absenceDomain.user eq user and (absenceDomain.date eq date)
     }.map {
       AbsenceDto(
+        id = it[absenceDomain.id],
         date = it[absenceDomain.date].toString(),
         hours = it[absenceDomain.hours],
         type = it[absenceDomain.type],
@@ -64,6 +65,7 @@ class AbsenceService {
       absenceDomain.user eq user
     }.groupBy { it[absenceDomain.date] }.map { entry ->
       AbsenceDto(
+        id = entry.value.first()[absenceDomain.id],
         date = entry.key.toString(),
         hours = entry.value.sumOf { it[absenceDomain.hours] },
         type = entry.value.first()[absenceDomain.type],
@@ -75,5 +77,11 @@ class AbsenceService {
     }.sortedByDescending {
       it.date
     }.take(days)
+  }
+
+  fun updateAbsence(user: UUID, id: Int, isExcused: Boolean) = transaction {
+    absenceDomain.update({ absenceDomain.user eq user and (absenceDomain.id eq id) }) {
+      it[absenceDomain.isExcused] = isExcused
+    }
   }
 }

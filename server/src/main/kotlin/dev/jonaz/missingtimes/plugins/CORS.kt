@@ -6,8 +6,10 @@ import io.ktor.server.plugins.*
 fun configureCors(configure: CORS.Configuration) {
   configure.header("Authorization")
 
+  configure.method(HttpMethod.Post)
   configure.method(HttpMethod.Patch)
   configure.method(HttpMethod.Get)
+  configure.method(HttpMethod.Put)
 
   configure.allowNonSimpleContentTypes = true
 
