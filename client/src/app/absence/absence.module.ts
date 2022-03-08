@@ -5,7 +5,7 @@ import { IconsModule } from 'src/app/layout/icons/icons.module';
 import { NewAbsenceTodayComponent } from './new-absence-today/new-absence-today.component';
 import { NewAbsenceDateComponent } from './new-absence-date/new-absence-date.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
 import { FormatDistanceToNowPipeModule } from 'ngx-date-fns';
 import { AbsenceHistoryItemComponent } from './absence-history/absence-history-item/absence-history-item.component';
@@ -23,7 +23,8 @@ import { AbsenceHistoryItemComponent } from './absence-history/absence-history-i
     IconsModule,
     RouterModule,
     ReactiveFormsModule,
-    FormatDistanceToNowPipeModule
+    FormatDistanceToNowPipeModule,
+    FormsModule
   ]
 })
 export class AbsenceModule { }

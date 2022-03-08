@@ -79,9 +79,13 @@ fun Route.absence() {
   get("/absence/history") {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
-    val days = call.request.queryParameters["days"]?.toIntOrNull() ?: 30
+    var limit = call.request.queryParameters["limit"]?.toIntOrNull() ?: 10
 
-    call.respond(absenceService.getAbsencesHistoryByDays(sub, days))
+    if (limit > 1000) {
+      limit = 1000
+    }
+
+    call.respond(absenceService.getAbsencesHistoryByDays(sub, limit))
   }
 
   put("/absence/update") {

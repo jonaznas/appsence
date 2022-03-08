@@ -1,6 +1,6 @@
 <div [ngClass]="{'border border-red-500': absence.mustExcused && !absence.isExcused}"
      class="collapse collapse-arrow bg-accent rounded-box mb-2">
-  <div (click)="toggleCollapse($event)" class="collapse-title text-xl font-medium">
+  <div (click)="toggleCollapse($event)" class="collapse-title history-collapse-item text-xl font-medium">
     <div class="flex items-center">
       <div>
         <b>{{ absence.hours }}</b> Stunden

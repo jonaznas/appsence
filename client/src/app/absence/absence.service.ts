@@ -33,10 +33,10 @@ export class AbsenceService {
     });
   }
 
-  public getLastAbsencesByDays(days: number): Observable<any> {
+  public getLastAbsences(limit: number): Observable<any> {
     return this.http.get(environment.endpoint.absence.getAbsenceHistoryByDays, {
       params: {
-        days
+        limit
       }
     }).pipe(
       map((absences: any) => {

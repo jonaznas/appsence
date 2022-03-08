@@ -60,23 +60,24 @@ class AbsenceService {
     }
   }
 
-  fun getAbsencesHistoryByDays(user: UUID, days: Int) = transaction {
+  fun getAbsencesHistoryByDays(user: UUID, limit: Int) = transaction {
     absenceDomain.select {
       absenceDomain.user eq user
-    }.groupBy { it[absenceDomain.date] }.map { entry ->
-      AbsenceDto(
-        id = entry.value.first()[absenceDomain.id],
-        date = entry.key.toString(),
-        hours = entry.value.sumOf { it[absenceDomain.hours] },
-        type = entry.value.first()[absenceDomain.type],
-        mustExcused = entry.value.first()[absenceDomain.mustExcused],
-        isExcused = entry.value.first()[absenceDomain.isExcused],
-        annotation = entry.value.first()[absenceDomain.annotation],
-        createdAt = entry.value.first()[absenceDomain.createdAt].toString()
-      )
-    }.sortedByDescending {
-      it.date
-    }.take(days)
+    }.limit(limit)
+      .groupBy { it[absenceDomain.date] }.map { entry ->
+        AbsenceDto(
+          id = entry.value.first()[absenceDomain.id],
+          date = entry.key.toString(),
+          hours = entry.value.sumOf { it[absenceDomain.hours] },
+          type = entry.value.first()[absenceDomain.type],
+          mustExcused = entry.value.first()[absenceDomain.mustExcused],
+          isExcused = entry.value.first()[absenceDomain.isExcused],
+          annotation = entry.value.first()[absenceDomain.annotation],
+          createdAt = entry.value.first()[absenceDomain.createdAt].toString()
+        )
+      }.sortedByDescending {
+        it.date
+      }
   }
 
   fun updateAbsence(user: UUID, id: Int, isExcused: Boolean) = transaction {

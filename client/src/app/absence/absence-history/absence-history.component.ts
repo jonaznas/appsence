@@ -11,20 +11,24 @@ import { de } from 'date-fns/locale';
 })
 export class AbsenceHistoryComponent implements OnInit {
 
-  absenceHistory: any[];
-  absences: Absence[];
+  absenceHistory: any[] | null;
+  historyLimit: number;
 
   constructor(
     private absenceService: AbsenceService
   ) {
+    this.historyLimit = 10;
   }
 
   ngOnInit(): void {
-    this.absenceService.getLastAbsencesByDays(90)
+    this.loadAbsenceHistory();
+  }
+
+  loadAbsenceHistory() {
+    this.absenceHistory = null;
+    this.absenceService.getLastAbsences(this.historyLimit)
       .subscribe(absences => {
-        this.absences = absences;
         this.absenceHistory = this.groupDates(absences);
-        console.log(this.groupDates(absences));
       });
   }
 

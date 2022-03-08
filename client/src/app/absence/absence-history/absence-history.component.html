@@ -1,12 +1,21 @@
-<div class="pb-5">
-  <h2 class="card-title">Deine letzten Fehlzeiten</h2>
+<div class="pb-5 flex justify-between items-center">
+  <h2 class="card-title">Fehlstunden</h2>
+  <select
+    [(ngModel)]="historyLimit"
+    (ngModelChange)="loadAbsenceHistory()"
+    class="select select-bordered select-xs bg-accent border-0">
+    <option value="10" selected>Letzte 10 Einträge</option>
+    <option value="25">Letzte 25 Einträge</option>
+    <option value="40">Letzte 40 Einträge</option>
+    <option value="1000">Alle Einträge</option>
+  </select>
 </div>
 
-<div *ngIf="!absences" class="flex justify-center">
+<div *ngIf="!absenceHistory" class="flex justify-center">
   <img src="assets/spinner-1.svg" alt="spinner">
 </div>
 
-<div *ngFor="let historyItem of absenceHistory">
+<div *ngFor="let historyItem of absenceHistory" class="mb-10">
   <div class="text-sm breadcrumbs">
     <ul>
       <li>{{ historyItem.year }}</li>
