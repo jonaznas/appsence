@@ -60,4 +60,8 @@ export class AbsenceService {
       id, isExcused
     });
   }
+
+  public getUnexcusedHours(): Observable<any> {
+    return this.http.get(environment.endpoint.absence.getUnexcused);
+  }
 }

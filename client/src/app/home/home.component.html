@@ -9,6 +9,10 @@
   <p class="mt-2 text-sm leading-relaxed">Angemeldet als {{ email }}</p>
 </div>
 
+<div *ngIf="unexcused > 0" class="alert bg-base-100 border border-red-500 shadow-lg mb-5">
+  <span>Du hast noch {{ unexcused }} unentschuldigte Fehlstunden.</span>
+</div>
+
 <div class="stats bg-primary text-primary-content block text-center mb-4">
   <div class="stat">
     <div class="stat-title">Fehlzeit der letzten 30 Tage</div>

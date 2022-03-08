@@ -105,6 +105,15 @@ fun Route.absence() {
       }
       .onSuccess { call.respond(HttpStatusCode.OK) }
   }
+
+  get("/absence/unexcused") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+
+    kotlin.runCatching { return@runCatching absenceService.countUnexcusedHours(sub) }
+      .onFailure { call.respond(HttpStatusCode.BadRequest) }
+      .onSuccess { call.respond(AbsenceUnexcusedDto(it)) }
+  }
 }
 
 @Serializable
@@ -128,6 +137,11 @@ data class AbsenceNewDateDto(
 data class AbsenceUpdateDto(
   val id: Int,
   val isExcused: Boolean
+)
+
+@Serializable
+data class AbsenceUnexcusedDto(
+  val unexcused: Int
 )
 
 @Serializable

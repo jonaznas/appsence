@@ -85,4 +85,12 @@ class AbsenceService {
       it[absenceDomain.isExcused] = isExcused
     }
   }
+
+  fun countUnexcusedHours(user: UUID) = transaction {
+    absenceDomain.select {
+      absenceDomain.user eq user and (absenceDomain.isExcused eq false and (absenceDomain.mustExcused eq true))
+    }.sumOf {
+      it[absenceDomain.hours]
+    }
+  }
 }
