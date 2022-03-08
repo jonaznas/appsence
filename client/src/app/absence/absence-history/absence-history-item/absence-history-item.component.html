@@ -48,7 +48,7 @@
       <p>{{ absence.annotation }}</p>
     </div>
     <div class="flex justify-between items-center mt-5">
-      <button routerLink="/absence/view/{{ absence.date }}" class="btn btn-sm btn-ghost">Details</button>
+      <button routerLink="/absence/view/{{ absence.date }}" class="btn btn-sm btn-ghost">Mehr</button>
       <button
         *ngIf="absence.mustExcused"
         [ngSwitch]="absence.isExcused"
@@ -57,8 +57,8 @@
         (click)="updateAbsence(absence.id, !absence.isExcused)"
         type="submit"
         class="btn btn-sm float-right">
-        <span *ngSwitchCase="true">Als unentschuldigt markieren</span>
-        <span *ngSwitchCase="false">Als entschuldigt markieren</span>
+        <span *ngSwitchCase="true">Unentschuldigt markieren</span>
+        <span *ngSwitchCase="false">Entschuldigt markieren</span>
       </button>
     </div>
   </div>
