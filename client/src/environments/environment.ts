@@ -10,6 +10,11 @@ export const environment = {
       getAbsencesForDate: '/v1/absences-for-date',
       getAbsenceHistoryByDays: '/v1/absence/history',
       updateAbsence: '/v1/absence/update'
+    },
+    statistic: {
+      hoursByDays: '/v1/statistic/hours-by-days',
+      allHours: '/v1/statistic/all-hours',
+      yearHours: '/v1/statistic/year-hours'
     }
   },
   supabase: {
