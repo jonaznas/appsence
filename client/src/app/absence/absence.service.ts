@@ -13,13 +13,17 @@ export class AbsenceService {
   ) {
   }
 
+  public getAbsenceById(id: number): Observable<any> {
+    return this.http.get(environment.endpoint.absence.getAbsenceById.replace('{id}', id.toString()));
+  }
+
   public newAbsenceToday(hours: number, type: number, mustExcused: boolean, annotation?: string): Observable<any> {
     return this.http.post(environment.endpoint.absence.newAbsenceToday, {
       hours, type, mustExcused, annotation
     });
   }
 
-  public newAbsenceDate(hours: number, type: number, date: string, mustExcused: boolean, annotation?: string) {
+  public newAbsenceDate(hours: number, type: number, date: string, mustExcused: boolean, annotation?: string): Observable<any> {
     return this.http.post(environment.endpoint.absence.newAbsenceDate, {
       hours, type, date, mustExcused, annotation
     });
@@ -55,13 +59,19 @@ export class AbsenceService {
     );
   }
 
-  public updateAbsence(id: number, isExcused: boolean) {
+  public updateAbsence(id: number, isExcused: boolean, type: number, mustExcused: boolean): Observable<any> {
     return this.http.put(environment.endpoint.absence.updateAbsence, {
-      id, isExcused
+      id, isExcused, type, mustExcused
     });
   }
 
   public getUnexcusedHours(): Observable<any> {
     return this.http.get(environment.endpoint.absence.getUnexcused);
+  }
+
+  public deleteAbsence(id: number): Observable<any> {
+    return this.http.post(environment.endpoint.absence.deleteAbsence, {
+      id
+    });
   }
 }

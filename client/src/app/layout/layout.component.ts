@@ -27,7 +27,9 @@ export class LayoutComponent implements OnInit {
     }
 
     this.router.events.subscribe(() => {
-      this.mainDrawer.nativeElement.checked = false;
+      if (this.mainDrawer) {
+        this.mainDrawer.nativeElement.checked = false;
+      }
     });
   }
 

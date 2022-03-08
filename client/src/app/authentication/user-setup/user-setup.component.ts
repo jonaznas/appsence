@@ -44,7 +44,6 @@ export class UserSetupComponent implements OnInit {
 
     if (!this.setupForm.valid) {
       this.loading = false;
-      console.log(this.setupForm.get('name')?.errors);
       this.error = 'Der Name ist ungültig.';
       return;
     }

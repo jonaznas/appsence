@@ -1,6 +1,6 @@
 <div [ngClass]="{'border border-red-500': absence.mustExcused && !absence.isExcused}"
      class="collapse collapse-arrow bg-accent rounded-box mb-2">
-  <div (click)="toggleCollapse($event)" class="collapse-title history-collapse-item text-xl font-medium">
+  <div (click)="toggleCollapse($event)" class="collapse-title history-collapse-item text-xl font-medium select-none">
     <div class="flex items-center">
       <div>
         <b>{{ absence.hours }}</b> Stunden
@@ -17,7 +17,6 @@
     </div>
   </div>
   <div class="collapse-content">
-
     <div class="flex items-center relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
       <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
         <i-tabler
@@ -35,7 +34,6 @@
         <p *ngIf="!absence.mustExcused" class="text-sm">Muss nicht entschuldigt werden.</p>
       </div>
     </div>
-
     <div class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
       <p>Grund</p>
       <div [ngSwitch]="absence.type">
@@ -44,24 +42,24 @@
         <p *ngSwitchCase="2" class="font-medium">Termin</p>
       </div>
     </div>
-
     <div *ngIf="absence.annotation"
          class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden">
       <p>Anmerkung</p>
       <p>{{ absence.annotation }}</p>
     </div>
-
-    <button
-      *ngIf="absence.mustExcused"
-      [ngSwitch]="absence.isExcused"
-      [ngClass]="{'loading': loading}"
-      [disabled]="loading"
-      (click)="updateAbsence(absence.id, !absence.isExcused)"
-      type="submit"
-      class="btn btn-sm mt-5 float-right">
-      <span *ngSwitchCase="true">Als unentschuldigt markieren</span>
-      <span *ngSwitchCase="false">Als entschuldigt markieren</span>
-    </button>
-
+    <div class="flex justify-between items-center mt-5">
+      <button routerLink="/absence/view/{{ absence.date }}" class="btn btn-sm btn-ghost">Details</button>
+      <button
+        *ngIf="absence.mustExcused"
+        [ngSwitch]="absence.isExcused"
+        [ngClass]="{'loading': loading}"
+        [disabled]="loading"
+        (click)="updateAbsence(absence.id, !absence.isExcused)"
+        type="submit"
+        class="btn btn-sm float-right">
+        <span *ngSwitchCase="true">Als unentschuldigt markieren</span>
+        <span *ngSwitchCase="false">Als entschuldigt markieren</span>
+      </button>
+    </div>
   </div>
 </div>

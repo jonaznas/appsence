@@ -1,0 +1,72 @@
+<div *ngIf="!hideAbsence" class="flex items-center">
+  <span class="w-6 h-6 bg-primary rounded-full"></span>
+  <h5 class="ml-6 font-bold">{{ absence.hours }} Stunden</h5>
+</div>
+<div *ngIf="!hideAbsence" class="ml-12">
+  <div class="card bg-accent shadow-xl border border-accent">
+    <form [formGroup]="absenceForm" (ngSubmit)="updateAbsence()">
+      <div class="card-body p-0">
+        <table class="table table-zebra w-full">
+          <tbody>
+          <tr>
+            <th>Erstellt um</th>
+            <td class="text-right">
+              <b>{{ absence.createdAt | date:'H:mm' }}</b>
+              <span class="text-xs">:{{ absence.createdAt | date:'ss' }}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Entschuldigung<br>erforderlich</th>
+            <td class="text-right">
+              <input formControlName="mustExcused" type="checkbox" class="checkbox checkbox-primary">
+            </td>
+          </tr>
+          <tr>
+            <th>Grund</th>
+            <td class="text-right">
+              <select formControlName="type" class="select select-xs w-full">
+                <option value="0" selected>Keine Auswahl</option>
+                <option value="1">Krank</option>
+                <option value="2">Termin</option>
+              </select>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!showDeleteConfirmation" class="flex justify-between items-center p-2 bg-base-100">
+          <button
+            (click)="showDeleteConfirmation = true"
+            type="button"
+            class="btn btn-sm btn-outline btn-error">
+            Löschen
+          </button>
+          <button
+            #saveButton
+            [disabled]="absenceForm.invalid || loading"
+            type="submit"
+            class="btn btn-sm btn-secondary">
+            Speichern
+          </button>
+        </div>
+        <div *ngIf="showDeleteConfirmation" class="p-2 bg-base-100">
+          <p class="mb-2">Bist du sicher?</p>
+          <div class="flex justify-between items-center">
+            <button
+              (click)="showDeleteConfirmation = false"
+              type="button"
+              class="btn btn-sm btn-secondary">
+              Abbrechen
+            </button>
+            <button
+              [disabled]="loading"
+              (click)="deleteAbsence()"
+              type="button"
+              class="btn btn-sm btn-outline btn-error">
+              Ja, löschen
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

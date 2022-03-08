@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
 import { FormatDistanceToNowPipeModule } from 'ngx-date-fns';
 import { AbsenceHistoryItemComponent } from './absence-history/absence-history-item/absence-history-item.component';
+import { ViewAbsenceComponent } from './view-absence/view-absence.component';
+import { ViewAbsenceItemComponent } from './view-absence/view-absence-item/view-absence-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AbsenceHistoryItemComponent } from './absence-history/absence-history-i
     NewAbsenceTodayComponent,
     NewAbsenceDateComponent,
     AbsenceHistoryComponent,
-    AbsenceHistoryItemComponent
+    AbsenceHistoryItemComponent,
+    ViewAbsenceComponent,
+    ViewAbsenceItemComponent
   ],
   imports: [
     CommonModule,

@@ -7,10 +7,12 @@ export const environment = {
     absence: {
       newAbsenceToday: '/v1/absence/new/today',
       newAbsenceDate: '/v1/absence/new/date',
+      getAbsenceById: '/v1/absence/{id}',
       getAbsencesForDate: '/v1/absences-for-date',
       getAbsenceHistoryByDays: '/v1/absence/history',
       getUnexcused: '/v1/absence/unexcused',
       updateAbsence: '/v1/absence/update',
+      deleteAbsence: '/v1/absence/delete'
     },
     statistic: {
       hoursByDays: '/v1/statistic/hours-by-days',

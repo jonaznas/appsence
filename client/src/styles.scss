@@ -1,3 +1,13 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.btn-outline.btn-success:hover {
+  background: transparent !important;
+  border-color: #22c55e !important;
+}
+
+.btn-outline.btn-error:hover {
+  background: transparent !important;
+  border-color: #ef4444 !important;
+}

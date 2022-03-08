@@ -3,11 +3,8 @@ package dev.jonaz.missingtimes.service
 import dev.jonaz.missingtimes.domain.AbsenceDomain
 import dev.jonaz.missingtimes.route.AbsenceDto
 import io.ktor.server.http.*
-import org.jetbrains.exposed.sql.and
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.update
 import java.time.LocalDate
 import java.util.*
 
@@ -34,6 +31,23 @@ class AbsenceService {
         it[absenceDomain.annotation] = annotation
       }
     }
+
+  fun getAbsenceById(user: UUID, id: Int) = transaction {
+    absenceDomain.select {
+      (absenceDomain.id eq id) and (absenceDomain.user eq user)
+    }.map {
+      AbsenceDto(
+        it[absenceDomain.id],
+        it[absenceDomain.date].toString(),
+        it[absenceDomain.hours],
+        it[absenceDomain.type],
+        it[absenceDomain.mustExcused],
+        it[absenceDomain.isExcused],
+        it[absenceDomain.annotation],
+        it[absenceDomain.createdAt].toString(),
+      )
+    }
+  }
 
   fun getAbsencesForDate(user: UUID, date: LocalDate) = transaction {
     absenceDomain.select {
@@ -80,9 +94,11 @@ class AbsenceService {
       }
   }
 
-  fun updateAbsence(user: UUID, id: Int, isExcused: Boolean) = transaction {
+  fun updateAbsence(user: UUID, id: Int, isExcused: Boolean, type: Int, mustExcused: Boolean) = transaction {
     absenceDomain.update({ absenceDomain.user eq user and (absenceDomain.id eq id) }) {
       it[absenceDomain.isExcused] = isExcused
+      it[absenceDomain.type] = type
+      it[absenceDomain.mustExcused] = mustExcused
     }
   }
 
@@ -91,6 +107,12 @@ class AbsenceService {
       absenceDomain.user eq user and (absenceDomain.isExcused eq false and (absenceDomain.mustExcused eq true))
     }.sumOf {
       it[absenceDomain.hours]
+    }
+  }
+
+  fun deleteAbsence(user: UUID, id: Int) = transaction {
+    absenceDomain.deleteWhere {
+      (absenceDomain.user eq user) and (absenceDomain.id eq id)
     }
   }
 }

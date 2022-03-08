@@ -1,0 +1,22 @@
+<div class="flex justify-between mb-5">
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <li>
+        Details
+      </li>
+      <li>
+        <b>{{ date | date:'d.M.yyyy' }}</b>
+      </li>
+    </ul>
+  </div>
+  <button routerLink="/absence" class="btn btn-sm btn-secondary">Zurück</button>
+</div>
+
+<div class="relative max-w-2xl">
+  <div class="absolute top-0 h-full border-r-2 border-primary left-3"></div>
+  <ul class="space-y-2">
+    <li *ngFor="let absence of absences" class="mb-5">
+      <app-view-absence-item [absence]="absence"></app-view-absence-item>
+    </li>
+  </ul>
+</div>

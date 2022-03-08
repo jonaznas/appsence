@@ -18,6 +18,17 @@ import java.util.*
 fun Route.absence() {
   val absenceService by genericInject<AbsenceService>()
 
+  get("/absence/{id}") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+    val id = call.parameters["id"]?.toIntOrNull()
+      ?: throw IllegalArgumentException("Die Abwesenheit wurde nicht gefunden.")
+
+    kotlin.runCatching { absenceService.getAbsenceById(sub, id) }
+      .onFailure { call.respond(HttpStatusCode.NotFound) }
+      .onSuccess { call.respond(it) }
+  }
+
   post("/absence/new/today") {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
@@ -94,7 +105,7 @@ fun Route.absence() {
 
     call.receive<AbsenceUpdateDto>()
       .runCatching {
-        absenceService.updateAbsence(sub, id, isExcused)
+        absenceService.updateAbsence(sub, id, isExcused, type, mustExcused)
       }
       .onFailure {
         call.respondText(
@@ -113,6 +124,16 @@ fun Route.absence() {
     kotlin.runCatching { return@runCatching absenceService.countUnexcusedHours(sub) }
       .onFailure { call.respond(HttpStatusCode.BadRequest) }
       .onSuccess { call.respond(AbsenceUnexcusedDto(it)) }
+  }
+
+  post("/absence/delete") {
+    val principal = call.authentication.principal<UserPrincipal>()
+    val sub = UUID.fromString(principal?.sub)
+
+    call.receive<AbsenceDeleteDto>()
+      .runCatching { absenceService.deleteAbsence(sub, id) }
+      .onFailure { call.respond(HttpStatusCode.BadRequest) }
+      .onSuccess { call.respond(HttpStatusCode.OK) }
   }
 }
 
@@ -136,12 +157,19 @@ data class AbsenceNewDateDto(
 @Serializable
 data class AbsenceUpdateDto(
   val id: Int,
-  val isExcused: Boolean
+  val isExcused: Boolean,
+  val type: Int,
+  val mustExcused: Boolean
 )
 
 @Serializable
 data class AbsenceUnexcusedDto(
   val unexcused: Int
+)
+
+@Serializable
+data class AbsenceDeleteDto(
+  val id: Int
 )
 
 @Serializable
