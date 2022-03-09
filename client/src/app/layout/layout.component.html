@@ -1,34 +1,34 @@
-<div class="w-full navbar bg-base-300">
-  <div class="flex-none">
-    <label for="main-drawer" class="btn btn-square btn-ghost">
-      <i-tabler name="align-justified"></i-tabler>
-    </label>
-  </div>
-  <div class="flex-1 px-2 mx-2 normal-case text-xl text-middle">Missing Times</div>
-  <div (click)="toggleDropdown($event)" class="dropdown  dropdown-end">
-    <label class="btn btn-ghost rounded-btn">
-      <i-tabler name="chevron-down"></i-tabler>
-    </label>
-    <ul class="p-2 shadow menu dropdown-content bg-accent rounded-box w-52 mt-24">
-      <li>
-        <a routerLink="sign-out">
-          <i-tabler name="logout"></i-tabler>
-          Abmelden
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="max-w-md mx-auto h-screen drawer w-full">
+<div class="max-w-md mx-auto drawer w-full">
   <input #mainDrawer id="main-drawer" type="checkbox" class="drawer-toggle">
+  <div class="w-full max-w-md navbar bg-base-300 fixed z-50 top-0">
+    <div class="flex-none">
+      <label for="main-drawer" class="btn btn-square btn-ghost">
+        <i-tabler name="align-justified"></i-tabler>
+      </label>
+    </div>
+    <div class="flex-1 px-2 mx-2 normal-case text-xl text-middle">Missing Times</div>
+    <div (click)="toggleDropdown($event)" class="dropdown  dropdown-end">
+      <label class="btn btn-ghost rounded-btn">
+        <i-tabler name="chevron-down"></i-tabler>
+      </label>
+      <ul class="p-2 shadow menu dropdown-content bg-accent rounded-box w-52 mt-24">
+        <li>
+          <a routerLink="sign-out">
+            <i-tabler name="logout"></i-tabler>
+            Abmelden
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div class="flex flex-col drawer-content">
-    <div class="p-4">
+    <div class="p-4 relative overflow-auto h-full mt-16">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <div class="drawer-side">
+  <div class="drawer-side mt-16">
     <label for="main-drawer" class="drawer-overlay"></label>
-    <ul class="p-4 overflow-y-auto menu w-80 bg-base-200 border-t border-t-accent">
+    <ul class="p-4 menu w-80 bg-base-200 border-t border-t-accent">
       <li class="mb-5">
         <a routerLink="home" routerLinkActive="active">
           <i-tabler name="home"></i-tabler>
