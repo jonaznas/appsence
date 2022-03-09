@@ -52,6 +52,7 @@ export class AbsenceService {
             type: absence.type,
             mustExcused: absence.mustExcused,
             isExcused: absence.isExcused,
+            picture: absence.picture,
             annotation: absence.annotation
           };
         });

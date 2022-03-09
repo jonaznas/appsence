@@ -10,6 +10,9 @@ import { NewAbsenceTodayComponent } from 'src/app/absence/new-absence-today/new-
 import { NewAbsenceDateComponent } from 'src/app/absence/new-absence-date/new-absence-date.component';
 import { AbsenceHistoryComponent } from 'src/app/absence/absence-history/absence-history.component';
 import { ViewAbsenceComponent } from 'src/app/absence/view-absence/view-absence.component';
+import {
+  ViewAbsencePictureComponent
+} from 'src/app/absence/view-absence/view-absence-picture/view-absence-picture.component';
 
 const routes: Routes = [
   {
@@ -44,6 +47,10 @@ const routes: Routes = [
       {
         path: 'view/:date',
         component: ViewAbsenceComponent
+      },
+      {
+        path: 'picture/:id',
+        component: ViewAbsencePictureComponent
       }
     ]
   }

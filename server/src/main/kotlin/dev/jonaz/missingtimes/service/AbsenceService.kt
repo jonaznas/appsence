@@ -44,6 +44,7 @@ class AbsenceService {
         it[absenceDomain.mustExcused],
         it[absenceDomain.isExcused],
         it[absenceDomain.annotation],
+        it[absenceDomain.picture],
         it[absenceDomain.createdAt].toString(),
       )
     }
@@ -61,6 +62,7 @@ class AbsenceService {
         mustExcused = it[absenceDomain.mustExcused],
         isExcused = it[absenceDomain.isExcused],
         annotation = it[absenceDomain.annotation],
+        picture = it[absenceDomain.picture],
         createdAt = it[absenceDomain.createdAt].toString()
       )
     }
@@ -87,6 +89,7 @@ class AbsenceService {
           mustExcused = entry.value.first()[absenceDomain.mustExcused],
           isExcused = entry.value.first()[absenceDomain.isExcused],
           annotation = entry.value.first()[absenceDomain.annotation],
+          picture = entry.value.first()[absenceDomain.picture],
           createdAt = entry.value.first()[absenceDomain.createdAt].toString()
         )
       }.sortedByDescending {

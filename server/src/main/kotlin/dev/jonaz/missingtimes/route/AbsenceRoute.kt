@@ -181,5 +181,6 @@ data class AbsenceDto(
   val mustExcused: Boolean,
   val isExcused: Boolean,
   val annotation: String?,
+  val picture: String?,
   val createdAt: String
 )

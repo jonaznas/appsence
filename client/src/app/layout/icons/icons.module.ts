@@ -14,7 +14,9 @@ import {
   IconCalendarTime,
   IconList,
   IconCheck,
-  IconAlertTriangle
+  IconAlertTriangle,
+  IconEdit,
+  IconEye
 } from 'angular-tabler-icons/icons';
 
 const icons = {
@@ -30,7 +32,9 @@ const icons = {
   IconCalendarTime,
   IconList,
   IconCheck,
-  IconAlertTriangle
+  IconAlertTriangle,
+  IconEdit,
+  IconEye
 };
 
 @NgModule({

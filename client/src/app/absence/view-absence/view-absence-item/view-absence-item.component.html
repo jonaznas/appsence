@@ -3,10 +3,10 @@
   <h5 class="ml-6 font-bold">{{ absence.hours }} Stunden</h5>
 </div>
 <div *ngIf="!hideAbsence" class="ml-12">
-  <div class="card bg-accent shadow-xl border border-accent">
+  <div class="card bg-accent shadow-xl border border-secondary">
     <form [formGroup]="absenceForm" (ngSubmit)="updateAbsence()">
       <div class="card-body p-0">
-        <table class="table table-zebra w-full">
+        <table class="table w-full">
           <tbody>
           <tr>
             <th>Erstellt um</th>
@@ -31,9 +31,29 @@
               </select>
             </td>
           </tr>
+          <tr *ngIf="absence.annotation">
+            <th>Anmerkung</th>
+            <td class="text-right">{{ absence.annotation }}</td>
+          </tr>
+          <tr>
+            <th class="pb-2">Bild</th>
+            <td class="text-right pb-2">
+              <button *ngIf="!absence.picture" class="btn btn-sm btn-outline btn-primary">Hochladen</button>
+              <div *ngIf="absence.picture">
+                <button routerLink="/absence/picture/{{ absence.id }}" type="button" class="btn btn-sm btn-secondary mr-2">
+                  <i-tabler name="eye"></i-tabler>
+                </button>
+                <button type="button" class="btn btn-sm btn-primary">
+                  <i-tabler name="edit"></i-tabler>
+                </button>
+              </div>
+            </td>
+          </tr>
           </tbody>
         </table>
-        <div *ngIf="!showDeleteConfirmation" class="flex justify-between items-center p-2 bg-base-100">
+        <div
+          *ngIf="!showDeleteConfirmation"
+          class="flex justify-between items-center px-2 py-3 border-t border-secondary">
           <button
             (click)="showDeleteConfirmation = true"
             type="button"

@@ -1,0 +1,22 @@
+<div class="flex justify-between mb-5">
+  <div class="text-sm breadcrumbs">
+    <ul>
+      <li>
+        Details
+      </li>
+      <li>
+        <b>{{ absence?.date | date:'d.M.yyyy' }}</b>
+      </li>
+      <li>
+        Bild
+      </li>
+    </ul>
+  </div>
+  <button routerLink="/absence/view/{{ absence?.date }}" class="btn btn-sm btn-secondary">Zurück</button>
+</div>
+
+<div class="card shadow-xl">
+  <div class="card-body p-0">
+    <img [src]="absence?.picture" alt="absence-picture" class="w-full">
+  </div>
+</div>

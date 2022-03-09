@@ -11,6 +11,7 @@ import { FormatDistanceToNowPipeModule } from 'ngx-date-fns';
 import { AbsenceHistoryItemComponent } from './absence-history/absence-history-item/absence-history-item.component';
 import { ViewAbsenceComponent } from './view-absence/view-absence.component';
 import { ViewAbsenceItemComponent } from './view-absence/view-absence-item/view-absence-item.component';
+import { ViewAbsencePictureComponent } from './view-absence/view-absence-picture/view-absence-picture.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ViewAbsenceItemComponent } from './view-absence/view-absence-item/view-
     AbsenceHistoryComponent,
     AbsenceHistoryItemComponent,
     ViewAbsenceComponent,
-    ViewAbsenceItemComponent
+    ViewAbsenceItemComponent,
+    ViewAbsencePictureComponent
   ],
   imports: [
     CommonModule,
