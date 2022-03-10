@@ -19,8 +19,7 @@ fun configureCors(configure: CORS.Configuration) {
   )
 
   configure.host(
-    host = "jonaz.dev",
-    subDomains = listOf("missing-times"),
+    host = "appsence.tech",
     schemes = listOf("https")
   )
 

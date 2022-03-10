@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://missing-times.herokuapp.com',
-  appUrl: 'https://missing-times.jonaz.dev',
+  apiUrl: 'https://api.appsence.tech',
+  appUrl: 'https://appsence.tech',
   endpoint: {
     userProfile: '/v1/user/profile',
     absence: {
