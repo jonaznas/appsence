@@ -1,8 +1,8 @@
-package dev.jonaz.missingtimes.route
+package dev.jonaz.appsence.route
 
-import dev.jonaz.missingtimes.persistence.UserPrincipal
-import dev.jonaz.missingtimes.service.AbsenceService
-import dev.jonaz.missingtimes.util.extension.genericInject
+import dev.jonaz.appsence.persistence.UserPrincipal
+import dev.jonaz.appsence.service.AbsenceService
+import dev.jonaz.appsence.util.extension.genericInject
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

@@ -1,9 +1,9 @@
-package dev.jonaz.missingtimes
+package dev.jonaz.appsence
 
-import dev.jonaz.missingtimes.plugins.*
-import dev.jonaz.missingtimes.util.exposed.ExposedClient
-import dev.jonaz.missingtimes.util.exposed.HikariSourceConfig
-import dev.jonaz.missingtimes.util.extension.genericInject
+import dev.jonaz.appsence.plugins.*
+import dev.jonaz.appsence.util.exposed.ExposedClient
+import dev.jonaz.appsence.util.exposed.HikariSourceConfig
+import dev.jonaz.appsence.util.extension.genericInject
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*

@@ -1,3 +1,3 @@
-rootProject.name = "missing-times"
+rootProject.name = "appsence"
 
 include("server", "client")

@@ -3,7 +3,7 @@ package dev.jonaz
 import io.ktor.http.*
 import kotlin.test.*
 import io.ktor.server.testing.*
-import dev.jonaz.missingtimes.plugins.*
+import dev.jonaz.appsence.plugins.*
 
 class ApplicationTest {
     @Test

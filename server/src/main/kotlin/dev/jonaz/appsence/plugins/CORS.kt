@@ -1,4 +1,4 @@
-package dev.jonaz.missingtimes.plugins
+package dev.jonaz.appsence.plugins
 
 import io.ktor.http.*
 import io.ktor.server.plugins.*

@@ -1,12 +1,10 @@
-package dev.jonaz.missingtimes.service
+package dev.jonaz.appsence.service
 
-import dev.jonaz.missingtimes.domain.ProfilesDomain
-import dev.jonaz.missingtimes.route.UserProfileDto
-import org.jetbrains.exposed.sql.insert
+import dev.jonaz.appsence.domain.ProfilesDomain
+import dev.jonaz.appsence.route.UserProfileDto
 import org.jetbrains.exposed.sql.insertIgnore
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.sql.Timestamp
 import java.util.*
 import java.util.regex.Pattern
 

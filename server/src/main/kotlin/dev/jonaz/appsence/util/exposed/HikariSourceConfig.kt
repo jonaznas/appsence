@@ -1,4 +1,4 @@
-package dev.jonaz.missingtimes.util.exposed
+package dev.jonaz.appsence.util.exposed
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

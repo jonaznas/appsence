@@ -1,8 +1,8 @@
-package dev.jonaz.missingtimes.plugins
+package dev.jonaz.appsence.plugins
 
-import dev.jonaz.missingtimes.persistence.UserPrincipal
-import dev.jonaz.missingtimes.service.JwtService
-import dev.jonaz.missingtimes.util.extension.genericInject
+import dev.jonaz.appsence.persistence.UserPrincipal
+import dev.jonaz.appsence.service.JwtService
+import dev.jonaz.appsence.util.extension.genericInject
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
 

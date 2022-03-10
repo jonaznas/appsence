@@ -1,4 +1,4 @@
-package dev.jonaz.missingtimes.domain
+package dev.jonaz.appsence.domain
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.date

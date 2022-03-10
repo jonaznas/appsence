@@ -1,4 +1,4 @@
-package dev.jonaz.missingtimes.util.extension
+package dev.jonaz.appsence.util.extension
 
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent.inject

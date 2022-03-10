@@ -1,7 +1,7 @@
-package dev.jonaz.missingtimes
+package dev.jonaz.appsence
 
-import dev.jonaz.missingtimes.module.appModule
-import dev.jonaz.missingtimes.module.databaseModule
+import dev.jonaz.appsence.module.appModule
+import dev.jonaz.appsence.module.databaseModule
 import org.koin.core.context.startKoin
 
 fun main() {

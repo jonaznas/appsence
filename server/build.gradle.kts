@@ -14,13 +14,13 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.6.10"
 }
 
-group = "dev.jonaz.missingtimes"
+group = "dev.jonaz.appsence"
 version = "0.0.1"
 
 setBuildDir("../build")
 
 application {
-    mainClass.set("dev.jonaz.missingtimes.MissingTimesKt")
+    mainClass.set("dev.jonaz.missingtimes.AppsenceKt")
 }
 
 repositories {

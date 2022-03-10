@@ -1,11 +1,12 @@
 <div class="max-w-md mx-auto h-screen drawer w-full">
   <div class="flex flex-col drawer-content">
     <div class="p-4">
-
-      <div class="pb-5">
-        <h2 class="card-title">Einrichtung</h2>
+      <div class="text-center mb-5">
+        <p class="text-4xl font-extrabold mb-3">
+          <span class="text-primary">A</span>ppsence
+        </p>
+        <p class="opacity-90">Einrichtung</p>
       </div>
-
       <div class="card bg-accent shadow-xl">
         <div class="card-body select-none">
           <form [formGroup]="setupForm" (ngSubmit)="finishSetup()">
@@ -34,7 +35,6 @@
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </div>

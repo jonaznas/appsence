@@ -1,12 +1,10 @@
-package dev.jonaz.missingtimes.service
+package dev.jonaz.appsence.service
 
-import dev.jonaz.missingtimes.domain.AbsenceDomain
+import dev.jonaz.appsence.domain.AbsenceDomain
 import org.jetbrains.exposed.sql.SortOrder
-import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDate
-import java.time.chrono.ChronoLocalDate
 import java.util.*
 
 class StatisticService {
