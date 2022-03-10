@@ -38,15 +38,13 @@
           <tr>
             <th class="pb-2">Bild</th>
             <td class="text-right pb-2">
-              <button *ngIf="!absence.picture" class="btn btn-sm btn-outline btn-primary">Hochladen</button>
-              <div *ngIf="absence.picture">
-                <button routerLink="/absence/picture/{{ absence.id }}" type="button" class="btn btn-sm btn-secondary mr-2">
-                  <i-tabler name="eye"></i-tabler>
-                </button>
-                <button type="button" class="btn btn-sm btn-primary">
-                  <i-tabler name="edit"></i-tabler>
-                </button>
-              </div>
+              <button
+                routerLink="/absence/picture/{{ absence.id }}"
+                type="button"
+                class="btn btn-sm btn-primary mr-2">
+                <i-tabler *ngIf="!absence.picture" name="upload"></i-tabler>
+                <i-tabler *ngIf="absence.picture" name="eye"></i-tabler>
+              </button>
             </td>
           </tr>
           </tbody>

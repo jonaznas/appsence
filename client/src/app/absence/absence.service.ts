@@ -60,9 +60,9 @@ export class AbsenceService {
     );
   }
 
-  public updateAbsence(id: number, isExcused: boolean, type: number, mustExcused: boolean): Observable<any> {
+  public updateAbsence(id: number, isExcused: boolean, type: number, mustExcused: boolean, picture: string | null): Observable<any> {
     return this.http.put(environment.endpoint.absence.updateAbsence, {
-      id, isExcused, type, mustExcused
+      id, isExcused, type, mustExcused, picture
     });
   }
 

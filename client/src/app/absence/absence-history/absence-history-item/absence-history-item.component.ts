@@ -46,7 +46,7 @@ export class AbsenceHistoryItemComponent implements OnInit {
 
   updateAbsence(id: number, isExcused: boolean) {
     this.loading = true;
-    this.absenceService.updateAbsence(id, isExcused, this.absence.type, this.absence.mustExcused)
+    this.absenceService.updateAbsence(id, isExcused, this.absence.type, this.absence.mustExcused, this.absence.picture)
       .subscribe({
         next: () => {
           this.absence.isExcused = isExcused;

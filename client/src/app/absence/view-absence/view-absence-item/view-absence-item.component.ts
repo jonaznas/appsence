@@ -41,7 +41,8 @@ export class ViewAbsenceItemComponent implements OnInit {
       this.absence.id,
       this.absence.isExcused,
       this.absenceForm.value.type,
-      this.absenceForm.value.mustExcused
+      this.absenceForm.value.mustExcused,
+      null
     ).subscribe({
       next: () => {
         this.showSaveFeedback('btn-success');

@@ -6,6 +6,6 @@ export type Absence = {
   mustExcused: boolean;
   isExcused: boolean;
   annotation: string;
-  picture: string;
+  picture: string | null;
   createdAt: string;
 };

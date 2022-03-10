@@ -1,3 +1,13 @@
+<input [checked]="!!error" type="checkbox" class="modal-toggle">
+<div class="modal items-center p-5">
+  <div class="modal-box rounded-xl border-2 border-red-700">
+    <p class="py-4">{{ error || 'Es ist ein Fehler aufgetreten. Versuche es erneut.' }}</p>
+    <div class="modal-action">
+      <label (click)="error = null" class="btn">Schließen</label>
+    </div>
+  </div>
+</div>
+
 <div class="flex justify-between mb-5">
   <div class="text-sm breadcrumbs">
     <ul>
@@ -15,8 +25,68 @@
   <button routerLink="/absence/view/{{ absence?.date }}" class="btn btn-sm btn-secondary">Zurück</button>
 </div>
 
-<div class="card shadow-xl">
-  <div class="card-body p-0">
-    <img [src]="absence?.picture" alt="absence-picture" class="w-full">
-  </div>
+<div *ngIf="!absence || loading; else content" class="flex justify-center">
+  <img src="assets/spinner-1.svg" alt="spinner">
 </div>
+
+<ng-template #content>
+  <div *ngIf="absence.picture">
+    <div class="card shadow-xl mb-5">
+      <div class="card-body p-0">
+        <img [src]="absence.picture" alt="absence-picture" class="w-full">
+      </div>
+    </div>
+    <button
+      (click)="showDeleteConfirmation = true"
+      *ngIf="!showDeleteConfirmation"
+      type="button"
+      class="btn btn-sm btn-error btn-outline float-right gap-1">
+      <i-tabler name="trash"></i-tabler>
+      Löschen
+    </button>
+    <div *ngIf="showDeleteConfirmation">
+      <p class="mb-2">Bist du sicher?</p>
+      <div class="flex justify-between items-center">
+        <button
+          (click)="deletePicture()"
+          type="button"
+          class="btn btn-sm btn-outline btn-error">
+          Ja, löschen
+        </button>
+        <button
+          (click)="showDeleteConfirmation = false"
+          type="button"
+          class="btn btn-sm btn-secondary">
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!absence.picture" class="card shadow-xl">
+    <div class="card-body p-0">
+      <div class="flex justify-center">
+        <div class="rounded-lg shadow-xl bg-accent w-full">
+          <div class="m-4">
+            <div class="flex items-center justify-center w-full">
+              <label class="flex flex-col w-full h-32 border-4 border-dashed border-secondary">
+                <div *ngIf="upload" class="flex flex-col items-center justify-center pt-7">
+                  <div class="flex justify-center">
+                    <img src="assets/spinner-1.svg" alt="spinner">
+                  </div>
+                  <p class="pt-1 text-sm tracking-wider">{{ upload }}</p>
+                </div>
+                <div *ngIf="!upload" class="flex flex-col items-center justify-center pt-7">
+                  <i-tabler name="photo" style="height: 40px; width: 40px;"></i-tabler>
+                  <p class="pt-1 text-sm tracking-wider">Tippe hier um ein Bild hochzuladen</p>
+                </div>
+                <input (change)="handleUpload($event)" type="file" accept="image/png, image/jpeg" class="opacity-0"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

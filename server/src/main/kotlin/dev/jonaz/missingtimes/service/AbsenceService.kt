@@ -97,11 +97,12 @@ class AbsenceService {
       }
   }
 
-  fun updateAbsence(user: UUID, id: Int, isExcused: Boolean, type: Int, mustExcused: Boolean) = transaction {
+  fun updateAbsence(user: UUID, id: Int, isExcused: Boolean, type: Int, mustExcused: Boolean, picture: String?) = transaction {
     absenceDomain.update({ absenceDomain.user eq user and (absenceDomain.id eq id) }) {
       it[absenceDomain.isExcused] = isExcused
       it[absenceDomain.type] = type
       it[absenceDomain.mustExcused] = mustExcused
+      it[absenceDomain.picture] = picture
     }
   }
 

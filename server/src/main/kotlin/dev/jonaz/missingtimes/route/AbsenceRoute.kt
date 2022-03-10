@@ -105,7 +105,7 @@ fun Route.absence() {
 
     call.receive<AbsenceUpdateDto>()
       .runCatching {
-        absenceService.updateAbsence(sub, id, isExcused, type, mustExcused)
+        absenceService.updateAbsence(sub, id, isExcused, type, mustExcused, picture)
       }
       .onFailure {
         call.respondText(
@@ -159,7 +159,8 @@ data class AbsenceUpdateDto(
   val id: Int,
   val isExcused: Boolean,
   val type: Int,
-  val mustExcused: Boolean
+  val mustExcused: Boolean,
+  val picture: String?
 )
 
 @Serializable
