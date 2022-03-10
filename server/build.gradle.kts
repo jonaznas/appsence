@@ -20,7 +20,7 @@ version = "0.0.1"
 setBuildDir("../build")
 
 application {
-    mainClass.set("dev.jonaz.missingtimes.AppsenceKt")
+    mainClass.set("dev.jonaz.appsence.AppsenceKt")
 }
 
 repositories {
