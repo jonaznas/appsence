@@ -78,8 +78,7 @@ class AbsenceService {
   fun getAbsencesHistoryByDays(user: UUID, limit: Int) = transaction {
     absenceDomain.select {
       absenceDomain.user eq user
-    }.limit(limit)
-      .groupBy { it[absenceDomain.date] }.map { entry ->
+    }.groupBy { it[absenceDomain.date] }.map { entry ->
         AbsenceDto(
           id = entry.value.first()[absenceDomain.id],
           date = entry.key.toString(),
@@ -93,7 +92,7 @@ class AbsenceService {
         )
       }.sortedByDescending {
         it.date
-      }
+      }.take(limit)
   }
 
   fun updateAbsence(user: UUID, id: Int, isExcused: Boolean, type: Int, mustExcused: Boolean, picture: String?) = transaction {
