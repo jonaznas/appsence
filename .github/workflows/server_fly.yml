@@ -1,4 +1,4 @@
-name: deploy server to fly
+name: server fly deployment
 on:
   workflow_dispatch:
 

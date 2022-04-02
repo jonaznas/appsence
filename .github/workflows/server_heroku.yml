@@ -1,4 +1,4 @@
-name: deploy server to heroku
+name: server heroku deployment
 
 on:
   workflow_dispatch:

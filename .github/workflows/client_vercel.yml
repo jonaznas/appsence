@@ -1,4 +1,4 @@
-name: deploy client to vercel
+name: client vercel deployment
 on:
   workflow_dispatch:
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Vercel Action
         uses: amondnet/vercel-action@v20.0.0
         with:

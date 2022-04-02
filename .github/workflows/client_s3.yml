@@ -1,4 +1,4 @@
-name: deploy client to s3
+name: client s3 deployment
 
 on:
   workflow_dispatch:

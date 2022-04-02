@@ -1,4 +1,4 @@
-name: deploy client to cloudflare
+name: client cloudflare deployment
 
 on:
   workflow_dispatch:
