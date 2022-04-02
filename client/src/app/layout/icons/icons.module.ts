@@ -18,7 +18,8 @@ import {
   IconEye,
   IconUpload,
   IconPhoto,
-  IconTrash
+  IconTrash,
+  IconCoffee
 } from 'angular-tabler-icons/icons';
 
 const icons = {
@@ -38,7 +39,8 @@ const icons = {
   IconEye,
   IconUpload,
   IconPhoto,
-  IconTrash
+  IconTrash,
+  IconCoffee
 };
 
 @NgModule({
