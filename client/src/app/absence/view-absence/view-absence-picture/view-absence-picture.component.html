@@ -1,9 +1,9 @@
 <input [checked]="!!error" type="checkbox" class="modal-toggle">
 <div class="modal items-center p-5">
   <div class="modal-box rounded-xl border-2 border-red-700">
-    <p class="py-4">{{ error || 'Es ist ein Fehler aufgetreten. Versuche es erneut.' }}</p>
+    <p class="py-4">{{ error || 'There was an error processing your request. Please try again.' }}</p>
     <div class="modal-action">
-      <label (click)="error = null" class="btn">Schließen</label>
+      <label (click)="error = null" class="btn">Close</label>
     </div>
   </div>
 </div>
@@ -18,11 +18,11 @@
         <b>{{ absence?.date | date:'d.M.yyyy' }}</b>
       </li>
       <li>
-        Bild
+        Picture
       </li>
     </ul>
   </div>
-  <button routerLink="/absence/view/{{ absence?.date }}" class="btn btn-sm btn-secondary">Zurück</button>
+  <button routerLink="/absence/view/{{ absence?.date }}" class="btn btn-sm btn-secondary">Back</button>
 </div>
 
 <div *ngIf="!absence || loading; else content" class="flex justify-center">
@@ -42,22 +42,22 @@
       type="button"
       class="btn btn-sm btn-error btn-outline float-right gap-1">
       <i-tabler name="trash"></i-tabler>
-      Löschen
+      Delete
     </button>
     <div *ngIf="showDeleteConfirmation">
-      <p class="mb-2">Bist du sicher?</p>
+      <p class="mb-2">Are you sure?</p>
       <div class="flex justify-between items-center">
         <button
           (click)="deletePicture()"
           type="button"
           class="btn btn-sm btn-outline btn-error">
-          Ja, löschen
+          Delete it
         </button>
         <button
           (click)="showDeleteConfirmation = false"
           type="button"
           class="btn btn-sm btn-secondary">
-          Abbrechen
+          Cancel
         </button>
       </div>
     </div>
@@ -78,7 +78,7 @@
                 </div>
                 <div *ngIf="!upload" class="flex flex-col items-center justify-center pt-7">
                   <i-tabler name="photo" style="height: 40px; width: 40px;"></i-tabler>
-                  <p class="pt-1 text-sm tracking-wider">Tippe hier um ein Bild hochzuladen</p>
+                  <p class="pt-1 text-sm tracking-wider">Tap here to upload a picture.</p>
                 </div>
                 <input (change)="handleUpload($event)" type="file" accept="image/png, image/jpeg" class="opacity-0"/>
               </label>

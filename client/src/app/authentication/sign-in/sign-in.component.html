@@ -1,9 +1,9 @@
 <input #tooManyRequestsModal type="checkbox" id="too-many-requests-modal" class="modal-toggle">
 <div class="modal items-center p-5">
   <div class="modal-box rounded-xl border-2 border-red-700">
-    <p class="py-4">Du musst 60 Sekunden warten bis du einen weiteren Anmeldelink anfordern kannst.</p>
+    <p class="py-4">You must wait 60 seconds before you can request another login link.</p>
     <div class="modal-action">
-      <label for="too-many-requests-modal" class="btn">Schließen</label>
+      <label for="too-many-requests-modal" class="btn">Close</label>
     </div>
   </div>
 </div>
@@ -11,9 +11,9 @@
 <input #emailSentModal type="checkbox" id="email-sent-modal" class="modal-toggle hidden">
 <div class="modal items-center p-5">
   <div class="modal-box rounded-xl">
-    <p class="py-4">Dir wurde ein Link per E-Mail gesendet.</p>
+    <p class="py-4">Check your inbox for the login link.</p>
     <div class="modal-action">
-      <label for="email-sent-modal" class="btn">Schließen</label>
+      <label for="email-sent-modal" class="btn">Close</label>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
         <p class="text-4xl font-extrabold mb-3">
           <span class="text-primary">A</span>ppsence
         </p>
-        <p class="opacity-90">Anmelden / Registrieren</p>
+        <p class="opacity-90">Login / Register</p>
       </div>
       <div class="card bg-accent shadow-xl">
         <div class="card-body select-none">
@@ -33,17 +33,17 @@
             <div (click)="signInGoogle()"
                  class="w-100 h-10 flex cursor-pointer justify-center items-center bg-secondary rounded-md">
               <i-tabler name="brand-google"></i-tabler>
-              <span class="ml-3">Mit Google anmelden</span>
+              <span class="ml-3">Sign-in with Google</span>
             </div>
-            <div class="divider">Oder</div>
+            <div class="divider">Or</div>
             <form [formGroup]="signInForm" (ngSubmit)="signInEmail()">
-              <input type="email" formControlName="email" placeholder="E-Mail" value="" class="input w-full">
+              <input type="email" formControlName="email" placeholder="Email" value="" class="input w-full">
               <button
                 [ngClass]="{'loading': loading}"
                 [disabled]="loading"
                 type="submit"
                 class="btn btn-sm btn-primary mt-5 float-right">
-                Anmeldelink senden
+                Send login link
               </button>
             </form>
           </div>

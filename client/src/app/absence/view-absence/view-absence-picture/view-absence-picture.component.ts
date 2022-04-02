@@ -34,7 +34,6 @@ export class ViewAbsencePictureComponent implements OnInit {
 
     this.absenceService.getAbsenceById(id).subscribe(absence => {
       this.absence = absence[0];
-      console.log(this.absence);
     });
   }
 
@@ -50,12 +49,12 @@ export class ViewAbsencePictureComponent implements OnInit {
     try {
       await this.compressPicture(file, options);
     } catch (error) {
-      this.error = 'Bei der Verarbeitung vom Bild ist ein Fehler aufgetreten.';
+      this.error = 'There was an error while compressing the picture.';
     }
   }
 
   async compressPicture(file: File, options: any): Promise<void> {
-    this.upload = 'Verarbeiten...';
+    this.upload = 'Compressing...';
     const compressedFile = await imageCompression(file, options);
     const reader = new FileReader();
     reader.readAsDataURL(compressedFile);
@@ -64,13 +63,13 @@ export class ViewAbsencePictureComponent implements OnInit {
       if (typeof reader.result === 'string') {
         this.uploadPicture(reader.result);
       } else {
-        this.error = 'Das Bild ist ungültig.';
+        this.error = 'The picture is invalid.';
       }
     };
   }
 
   uploadPicture(base64: string | null) {
-    this.upload = 'Hochladen...';
+    this.upload = 'Uploading...';
     this.absenceService.updateAbsence(
       this.absence.id,
       this.absence.isExcused,
@@ -84,7 +83,7 @@ export class ViewAbsencePictureComponent implements OnInit {
         this.upload = null;
       },
       error: () => {
-        this.error = 'Das Bild konnte nicht hochgeladen werden.';
+        this.error = 'There was an error while uploading the picture.';
         this.upload = null;
         this.loading = false;
       }

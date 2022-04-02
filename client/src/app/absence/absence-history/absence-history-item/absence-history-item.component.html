@@ -3,7 +3,7 @@
   <div (click)="toggleCollapse($event)" class="collapse-title history-collapse-item text-xl font-medium select-none">
     <div class="flex items-center">
       <div>
-        <b>{{ absence.hours }}</b> Stunden
+        <b>{{ absence.hours }}</b> hours
       </div>
       <div class="divider divider-horizontal"></div>
       <div class="pl-1">
@@ -29,26 +29,26 @@
         </i-tabler>
       </div>
       <div class="ml-3">
-        <p *ngIf="absence.mustExcused && absence.isExcused" class="font-medium">Entschuldigt</p>
-        <p *ngIf="absence.mustExcused && !absence.isExcused" class="font-medium">Unentschuldigt</p>
-        <p *ngIf="!absence.mustExcused" class="text-sm">Muss nicht entschuldigt werden.</p>
+        <p *ngIf="absence.mustExcused && absence.isExcused" class="font-medium">Excused</p>
+        <p *ngIf="absence.mustExcused && !absence.isExcused" class="font-medium">Unexcused</p>
+        <p *ngIf="!absence.mustExcused" class="text-sm">Must be excused.</p>
       </div>
     </div>
     <div class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden mb-2">
       <p>Grund</p>
       <div [ngSwitch]="absence.type">
-        <p *ngSwitchDefault class="font-medium">Kein Grund</p>
-        <p *ngSwitchCase="1" class="font-medium">Krank</p>
-        <p *ngSwitchCase="2" class="font-medium">Termin</p>
+        <p *ngSwitchDefault class="font-medium">No reason</p>
+        <p *ngSwitchCase="1" class="font-medium">Sick</p>
+        <p *ngSwitchCase="2" class="font-medium">Appointment</p>
       </div>
     </div>
     <div *ngIf="absence.annotation"
          class="flex items-center justify-between relative p-4 w-full bg-accent rounded-lg overflow-hidden">
-      <p>Anmerkung</p>
+      <p>Annotation</p>
       <p>{{ absence.annotation }}</p>
     </div>
     <div class="flex justify-between items-center mt-5">
-      <button routerLink="/absence/view/{{ absence.date }}" class="btn btn-sm btn-ghost">Mehr</button>
+      <button routerLink="/absence/view/{{ absence.date }}" class="btn btn-sm btn-ghost">More</button>
       <button
         *ngIf="absence.mustExcused"
         [ngSwitch]="absence.isExcused"
@@ -57,8 +57,8 @@
         (click)="updateAbsence(absence.id, !absence.isExcused)"
         type="submit"
         class="btn btn-sm float-right">
-        <span *ngSwitchCase="true">Unentschuldigt markieren</span>
-        <span *ngSwitchCase="false">Entschuldigt markieren</span>
+        <span *ngSwitchCase="true">Mark unexcused</span>
+        <span *ngSwitchCase="false">Mark excused</span>
       </button>
     </div>
   </div>

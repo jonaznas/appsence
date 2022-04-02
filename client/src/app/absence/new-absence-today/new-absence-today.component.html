@@ -1,9 +1,9 @@
 <input [checked]="!!error" type="checkbox" class="modal-toggle">
 <div class="modal items-center p-5">
   <div class="modal-box rounded-xl border-2 border-red-700">
-    <p class="py-4">{{ error || 'Beim eintragen ist ein Fehler aufgetreten. Versuche es erneut.' }}</p>
+    <p class="py-4">{{ error || 'There was an error processing your request. Please try again later.' }}</p>
     <div class="modal-action">
-      <label (click)="error = null" class="btn">Schließen</label>
+      <label (click)="error = null" class="btn">Close</label>
     </div>
   </div>
 </div>
@@ -12,14 +12,14 @@
   <div class="text-sm breadcrumbs">
     <ul>
       <li>
-        Neue Abwesenheit
+        New absence
       </li>
       <li>
-        <b>Heute</b>
+        <b>Today</b>
       </li>
     </ul>
   </div>
-  <button routerLink="/absence/new" class="btn btn-sm btn-secondary">Zurück</button>
+  <button routerLink="/absence/new" class="btn btn-sm btn-secondary">Back</button>
 </div>
 
 <form [formGroup]="newAbsenceForm" (ngSubmit)="submitAbsence()">
@@ -28,7 +28,7 @@
       <div class="flex flex-col w-full border-opacity-50">
         <div class="mb-2">
           <label class="label">
-            <span class="label-text">Wie viele Stunden fehlst du heute?</span>
+            <span class="label-text">How many hours will you miss today?</span>
           </label>
           <input
             formControlName="hours"
@@ -42,39 +42,39 @@
 
         <div class="mb-2">
           <label class="label">
-            <span class="label-text">Art des Fehlens</span>
+            <span class="label-text">Reason</span>
           </label>
           <select formControlName="type" class="select w-full">
-            <option value="0" selected>Keine Auswahl</option>
-            <option value="1">Krank</option>
-            <option value="2">Termin</option>
+            <option value="0" selected>No reason</option>
+            <option value="1">Sick</option>
+            <option value="2">Appointment</option>
           </select>
         </div>
 
         <div class="form-control mb-4">
           <label class="label cursor-pointer">
-            <span class="label-text">Muss entschuldigt werden</span>
+            <span class="label-text">Must be excused</span>
             <input formControlName="mustExcused" type="checkbox" checked="checked" class="checkbox checkbox-primary">
           </label>
         </div>
 
         <div *ngIf="!showAnnotations" class="w-full">
           <label class="label float-right">
-            <a (click)="showAnnotations = true" class="label-text-alt link underline">Anmerkungen hinzufügen</a>
+            <a (click)="showAnnotations = true" class="label-text-alt link underline">Add annotation</a>
           </label>
         </div>
 
         <div *ngIf="showAnnotations">
           <label class="label">
-            <span class="label-text">Anmerkungen</span>
-            <span (click)="showAnnotations = false" class="label-text-alt link underline">Ausblenden</span>
+            <span class="label-text">Annotation</span>
+            <span (click)="showAnnotations = false" class="label-text-alt link underline">Hide</span>
           </label>
           <textarea
             formControlName="annotation"
             maxlength="100"
             rows="3"
             class="textarea w-full"
-            placeholder="Text bis 100 Zeichen">
+            placeholder="Up to 100 characters">
           </textarea>
         </div>
 
@@ -86,6 +86,6 @@
     [disabled]="loading || !newAbsenceForm.valid"
     type="submit"
     class="btn btn-primary mt-5 w-full">
-    Fehlzeit hinzufügen
+    Create absence
   </button>
 </form>

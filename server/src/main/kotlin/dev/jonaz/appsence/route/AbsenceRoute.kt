@@ -22,7 +22,7 @@ fun Route.absence() {
     val principal = call.authentication.principal<UserPrincipal>()
     val sub = UUID.fromString(principal?.sub)
     val id = call.parameters["id"]?.toIntOrNull()
-      ?: throw IllegalArgumentException("Die Abwesenheit wurde nicht gefunden.")
+      ?: throw IllegalArgumentException("Cannot find absence.")
 
     kotlin.runCatching { absenceService.getAbsenceById(sub, id) }
       .onFailure { call.respond(HttpStatusCode.NotFound) }
@@ -38,7 +38,7 @@ fun Route.absence() {
         val totalHoursToday = absenceService.getAbsenceHoursForDate(sub, LocalDate.now()) + hours
 
         if (totalHoursToday >= 24) {
-          throw BadRequestException("Du kannst an einem Tag nicht mehr als 24 Stunden fehlen.")
+          throw BadRequestException("You are trying to miss more than 24 hours today. That's not allowed.")
         }
 
         absenceService.newAbsenceToday(sub, hours, type, mustExcused, annotation)
@@ -47,7 +47,7 @@ fun Route.absence() {
         call.respondText(
           status = HttpStatusCode.BadRequest,
           contentType = ContentType.Text.Plain,
-          text = it.message ?: "Unbekannter Fehler"
+          text = it.message ?: "Unknown error."
         )
       }
       .onSuccess { call.respond(HttpStatusCode.Created) }
@@ -62,7 +62,7 @@ fun Route.absence() {
         val totalHoursToday = absenceService.getAbsenceHoursForDate(sub, LocalDate.now()) + hours
 
         if (totalHoursToday >= 24) {
-          throw BadRequestException("Du kannst an einem Tag nicht mehr als 24 Stunden fehlen.")
+          throw BadRequestException("You are trying to miss more than 24 hours today. That's not allowed.")
         }
 
         absenceService.newAbsence(sub, LocalDate.parse(date), hours, type, mustExcused, annotation)
@@ -71,7 +71,7 @@ fun Route.absence() {
         call.respondText(
           status = HttpStatusCode.BadRequest,
           contentType = ContentType.Text.Plain,
-          text = it.message ?: "Unbekannter Fehler"
+          text = it.message ?: "Unknown error."
         )
       }
       .onSuccess { call.respond(HttpStatusCode.Created) }
@@ -111,7 +111,7 @@ fun Route.absence() {
         call.respondText(
           status = HttpStatusCode.BadRequest,
           contentType = ContentType.Text.Plain,
-          text = it.message ?: "Unbekannter Fehler"
+          text = it.message ?: "Unknown error."
         )
       }
       .onSuccess { call.respond(HttpStatusCode.OK) }

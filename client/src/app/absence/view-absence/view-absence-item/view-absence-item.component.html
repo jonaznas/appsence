@@ -1,42 +1,42 @@
 <div *ngIf="!hideAbsence" class="flex items-center">
   <span class="w-6 h-6 bg-primary rounded-full"></span>
-  <h5 class="ml-6 font-bold">{{ absence.hours }} Stunden</h5>
+  <h5 class="ml-6 font-bold">{{ absence.hours }} hours</h5>
 </div>
-<div *ngIf="!hideAbsence" class="ml-12">
+<div *ngIf="!hideAbsence" class="ml-12 mt-3">
   <div class="card bg-accent shadow-xl border border-secondary">
     <form [formGroup]="absenceForm" (ngSubmit)="updateAbsence()">
       <div class="card-body p-0">
         <table class="table w-full">
           <tbody>
           <tr>
-            <th>Erstellt um</th>
+            <th>Created at</th>
             <td class="text-right">
               <b>{{ absence.createdAt | date:'H:mm' }}</b>
               <span class="text-xs">:{{ absence.createdAt | date:'ss' }}</span>
             </td>
           </tr>
           <tr>
-            <th>Entschuldigung<br>erforderlich</th>
+            <th>Must be excused</th>
             <td class="text-right">
               <input formControlName="mustExcused" type="checkbox" class="checkbox checkbox-primary">
             </td>
           </tr>
           <tr>
-            <th>Grund</th>
+            <th>Reason</th>
             <td class="text-right">
               <select formControlName="type" class="select select-xs w-full">
-                <option value="0" selected>Keine Auswahl</option>
-                <option value="1">Krank</option>
-                <option value="2">Termin</option>
+                <option value="0" selected>No reason</option>
+                <option value="1">Sick</option>
+                <option value="2">Appointment</option>
               </select>
             </td>
           </tr>
           <tr *ngIf="absence.annotation">
-            <th>Anmerkung</th>
+            <th>Annotation</th>
             <td class="text-right">{{ absence.annotation }}</td>
           </tr>
           <tr>
-            <th class="pb-2">Bild</th>
+            <th class="pb-2">Picture</th>
             <td class="text-right pb-2">
               <button
                 routerLink="/absence/picture/{{ absence.id }}"
@@ -56,31 +56,31 @@
             (click)="showDeleteConfirmation = true"
             type="button"
             class="btn btn-sm btn-outline btn-error">
-            Löschen
+            Delete
           </button>
           <button
             #saveButton
             [disabled]="absenceForm.invalid || loading"
             type="submit"
             class="btn btn-sm btn-secondary">
-            Speichern
+            Save
           </button>
         </div>
-        <div *ngIf="showDeleteConfirmation" class="p-2 bg-base-100">
-          <p class="mb-2">Bist du sicher?</p>
+        <div *ngIf="showDeleteConfirmation" class="p-2 border-t border-secondary">
+          <p class="mb-2">Are you sure?</p>
           <div class="flex justify-between items-center">
             <button
               (click)="showDeleteConfirmation = false"
               type="button"
               class="btn btn-sm btn-secondary">
-              Abbrechen
+              Cancel
             </button>
             <button
               [disabled]="loading"
               (click)="deleteAbsence()"
               type="button"
               class="btn btn-sm btn-outline btn-error">
-              Ja, löschen
+              Delete it
             </button>
           </div>
         </div>

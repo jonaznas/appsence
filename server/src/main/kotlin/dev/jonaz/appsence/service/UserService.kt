@@ -25,7 +25,7 @@ class UserService {
 
   fun createUserProfile(userProfile: UserProfileDto) = transaction {
     if (isUsernameValid(userProfile.name).not()) {
-      throw IllegalArgumentException("Der Name ist ungültig.")
+      throw IllegalArgumentException("The name is not valid.")
     }
 
     val insertedCount = profilesDomain.insertIgnore {
@@ -34,7 +34,7 @@ class UserService {
     }.insertedCount
 
     if (insertedCount == 0) {
-      throw IllegalArgumentException("Das Profil wurde bereits eingerichtet.")
+      throw IllegalArgumentException("The user profile already exists.")
     }
   }
 

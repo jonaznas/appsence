@@ -5,19 +5,19 @@
         <p class="text-4xl font-extrabold mb-3">
           <span class="text-primary">A</span>ppsence
         </p>
-        <p class="opacity-90">Einrichtung</p>
+        <p class="opacity-90">Account setup</p>
       </div>
       <div class="card bg-accent shadow-xl">
         <div class="card-body select-none">
           <form [formGroup]="setupForm" (ngSubmit)="finishSetup()">
             <label class="label pt-0">
-              <span class="label-text">Wie heißt du?</span>
+              <span class="label-text">Whats your name?</span>
             </label>
             <div class="input-group">
               <input [ngClass]="{'input-error': error}"
                      type="text"
                      formControlName="name"
-                     placeholder="Vorname"
+                     placeholder="First name"
                      value=""
                      class="input w-full"
                      pattern="^[A-z0-9_-]{3,15}$">
@@ -26,7 +26,7 @@
                 [disabled]="loading"
                 type="submit"
                 class="btn btn-primary float-right">
-                Weiter
+                Next
               </button>
             </div>
             <label *ngIf="error" class="label pb-0">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbsenceService } from 'src/app/absence/absence.service';
 import { Absence } from 'src/app/absence/absence';
 import { format } from 'date-fns';
-import { de } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 
 @Component({
   selector: 'app-absence',
@@ -59,7 +59,7 @@ export class AbsenceHistoryComponent implements OnInit {
     return format(
       new Date(0, month - 1),
       'MMMM',
-      { locale: de }
+      { locale: enUS }
     );
   }
 }

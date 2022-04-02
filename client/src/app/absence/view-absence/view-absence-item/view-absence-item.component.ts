@@ -65,12 +65,12 @@ export class ViewAbsenceItemComponent implements OnInit {
   showSaveFeedback(feedback: string) {
     this.saveButton.nativeElement.classList.add(feedback);
     this.saveButton.nativeElement.classList.add('btn-outline');
-    this.saveButton.nativeElement.textContent = 'Wurde gespeichert';
+    this.saveButton.nativeElement.textContent = 'Saved!';
 
     setTimeout(() => {
       this.saveButton.nativeElement.classList.remove(feedback);
       this.saveButton.nativeElement.classList.remove('btn-outline');
-      this.saveButton.nativeElement.textContent = 'Speichern';
+      this.saveButton.nativeElement.textContent = 'Save';
     }, 4000);
   }
 }

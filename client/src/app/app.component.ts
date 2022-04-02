@@ -19,8 +19,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private supabaseService: SupabaseService,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
   }
 

@@ -6,17 +6,17 @@
 
 <div class="pb-5">
   <h2 class="card-title">Hey {{ profile?.name }} 👋</h2>
-  <p class="mt-2 text-sm leading-relaxed">Angemeldet als {{ email }}</p>
+  <p class="mt-2 text-sm leading-relaxed">Logged in as {{ email }}</p>
 </div>
 
 <div *ngIf="unexcused > 0" class="alert bg-base-100 border border-red-500 shadow-lg mb-5">
-  <span>Du hast noch {{ unexcused }} unentschuldigte Fehlstunden.</span>
+  <span>You have {{ unexcused }} unexcused hours.</span>
 </div>
 
 <div class="stats bg-primary text-primary-content block text-center mb-4">
   <div class="stat">
-    <div class="stat-title">Fehlzeit der letzten 30 Tage</div>
-    <div class="stat-value">{{ statistic.last30Days }} Stunden</div>
+    <div class="stat-title">Absence in the last 30 days</div>
+    <div class="stat-value">{{ statistic.last30Days }} hours</div>
   </div>
 </div>
 
@@ -24,14 +24,14 @@
   <div class="shadow-lg rounded-2xl p-4 bg-accent block w-full">
     <div class="flex items-center">
       <p class="text-md ml-2 text-gray-500">
-        Insgesamt
+        Total
       </p>
     </div>
     <div class="flex flex-col justify-start">
       <p class="text-4xl text-left font-bold my-4">
         {{ statistic.all }}
         <span class="text-sm">
-          Stunden
+          hours
         </span>
       </p>
     </div>
@@ -39,14 +39,14 @@
   <div class="shadow-lg rounded-2xl p-4 bg-accent block w-full">
     <div class="flex items-center">
       <p class="text-md ml-2 text-gray-500">
-        Dieses Jahr
+        This year
       </p>
     </div>
     <div class="flex flex-col justify-start">
       <p class="text-4xl text-left font-bold my-4">
         {{ statistic.thisYear }}
         <span class="text-sm">
-          Stunden
+          hours
         </span>
       </p>
     </div>
