@@ -21,6 +21,8 @@
 - **Easy and secure login**: You can log in via Google or magic link.
 - **Statistics**: See how much you have missed in the past.
 - **Reminder**: Get remided if you have unexcued absence hours.
+- **Absences**: Create absences for the current day or a specific date.
 - **Upload picture**: Upload a picture of your excuse.
 - **Secure**: It's developed with a secure backend powered by [Supabase](https://supabase.com/)
 - **Email confirmations**: Users receive emails to log in or confirm their account.
+- **PWA**: Add this app to your mobile device as a Progressive Web App.
