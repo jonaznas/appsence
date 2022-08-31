@@ -1,3 +1,6 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
@@ -12,6 +15,7 @@ plugins {
     application
     kotlin("jvm") version "1.6.10"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
 group = "dev.jonaz.appsence"
@@ -52,4 +56,22 @@ dependencies {
 
     testImplementation("io.ktor", "ktor-server-tests-jvm", ktor_version)
     testImplementation("org.jetbrains.kotlin", "kotlin-test-junit", kotlin_version)
+}
+
+tasks {
+  named<ShadowJar>("shadowJar") {
+    archiveFileName.set("server.jar")
+    manifest.attributes.apply {
+      put("Main-Class", "dev.jonaz.appsence.AppsenceKt")
+    }
+  }
+}
+
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.kotlinOptions {
+  languageVersion = "1.7"
+}
+
+task("stage") {
+  dependsOn("build")
 }
